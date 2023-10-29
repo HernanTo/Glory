@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+:root
+{
+    --main-color: #D72323;
+    --sec-color: #04364A;
+    --color-text: #D3D6DB;
+    --color-bg-light: #D3D6DB;
+    --color-bg-gray: #303841;
+    --color-gray: #3A4750;
+    --color-gray-op: rgba(58, 71, 80, 0.08);
+    --color-gray-op-os: #3a475070;
+    --color-white-op: #c9c9c942;
+    --color-primary: #103fbf;
+    --color-primary-op: rgba(0, 69, 142, 0.5);
+    --iron-50: #f6f6f7;
+    --iron-100: #eef0f1;
+    --iron-200: #e0e2e5;
+    --iron-300: #d3d6db;
+    --iron-400: #b6bac3;
+    --iron-500: #a2a6b2;
+    --iron-600: #8d8f9e;
+    --iron-700: #797b89;
+    --iron-800: #636570;
+    --iron-900: #53555c;
+    --iron-950: #303036;
+    --border-color-low: rgba(155, 151, 151, 0.05);
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    background: var(--color-bg-light);
+    min-width: 300px;
+}
+.form__floating__glory input{
+    background: var(--color-gray-op);
+    font-family: 'Poppins';
+}
+.form__floating__glory label{
+    font-family: 'Poppins';
+}
+.form__floating__glory{
+    position: relative;
+}
+
+@keyframes pulsate-fwd{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}

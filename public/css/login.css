@@ -1,0 +1,99 @@
+body{
+    overflow-x: hidden;
+}
+.container__login{
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 80px;
+    min-height: 400px;
+    height: 100vh;
+    justify-content: center;
+}
+.container__login .aside__login{
+    background-color: var(--color-bg-gray);
+    display: none;
+}
+.container__login .footer__login{
+    background-color: var(--color-bg-gray);
+    width: 100%;
+    height: 100%;
+}
+.header__con__login{
+    display: grid;
+    justify-items: center;
+    margin-bottom: 20px;
+}
+.header__con__login .header__logo__login{
+    width: 200px;
+    margin-bottom: 15px;
+    user-select: none;
+    pointer-events: none;
+    object-fit: cover;
+}
+.con__login{
+    padding: 30px 50px 20px 50px;
+}
+.con__login h2{
+    font-family: 'Alata';
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.con__login form{
+    display: grid;
+    row-gap: 10px;
+    grid-template-columns: minmax(200px, 300px);
+    justify-content: center;
+}
+.con__login form .form__floating__glory{
+    width: 100%;
+}
+.con__login form .con_btn{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 140px;
+}
+.btn__login{
+    height: 45px;
+    margin-top: 20px;
+    background: var(--color-bg-gray);
+    color: white;
+    font-family: 'Poppins';
+}
+.con__aler_login{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: minmax(200px, 300px);
+    justify-content: center;
+}
+.con__aler_login p{
+    text-align: center;
+    font-family: 'Nunito Sans';
+}
+.con__aler_login p a{
+    color: var(--main-color);
+    text-decoration: none;
+}
+.link__forg{
+    color: var(--sec-color);
+    font-family: 'Nunito Sans';
+    text-decoration: none;
+    font-weight: 600;
+}
+@media(min-width: 990px){
+    .container__login .footer__login{
+        display: none;
+    }
+    .container__login{
+        grid-template-columns: 1fr 60%;
+        grid-template-rows: 1fr;
+    }
+    .container__login .con__login{
+        padding-top: 80px;
+    }
+    .container__login .aside__login{
+        display: grid;
+    }
+}
