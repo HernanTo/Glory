@@ -39,16 +39,16 @@
             <h4>Stock no disponible</h4>
             @endif
             @if ($product->available == 0 || $product->stock > 0)
-                <span class="available">Disponibilidad Inmediata</span>
+                <span class="available">Entrega nmediata</span>
             @endif
             @if ($product->available == 15 && $product->stock <= 0)
-            <span class="available available__middle">Disponibilidad 15 días</span>
+            <span class="available available__middle">Entrega a 15 días</span>
             @endif
             @if ($product->available == 30 && $product->stock <= 0)
-            <span class="available available__long">Disponibilidad 30 días</span>
+            <span class="available available__long">Entrega a 30 días</span>
             @endif
             @if ($product->available == 60 && $product->stock <= 0)
-            <span class="available available__long__extra">Disponibilidad 60 días</span>
+            <span class="available available__long__extra">Entrega a 60 días</span>
             @endif
 
             @if ($product->stock == 1)
@@ -59,10 +59,10 @@
             @endif
         </div>
         <article class="con__actions_vertical">
-            <button class="btn__add__car__pro">
+            {{-- <button class="btn__add__car__pro">
                 <i class="fi fi-sr-shopping-cart-add"></i>
                 Añadir al carrito
-            </button>
+            </button> --}}
             <a href="https://api.whatsapp.com/send/?phone=573102452756&text=Quiero+realizar+una+cotizaci%C3%B3n+de+algunos+repuestos.&type=phone_number&app_absent=0" class="btn__whatsapp__pro">
                 Escribenos por Whatsapp
             </a>
@@ -102,7 +102,7 @@
         </table>
     </section>
     @if (count($similarProducts) > 0)
-    <section class="con__section_prods con__section_prods__recomen">
+    {{-- <section class="con__section_prods con__section_prods__recomen">
         <div class="header__section__prods header__section_recomen">
             <h2>Repuestos relacionados</h2>
         </div>
@@ -124,7 +124,7 @@
                 </a>
             @endforeach
         </div>
-    </section>
+    </section> --}}
     @endif
 </div>
 @endsection

@@ -34,9 +34,11 @@
                     <button class="btn__search"><i class="fi fi-rr-search"></i></button>
                 </form>
             </div>
-            <div class="nav__car"><i class="fi fi-rr-shopping-cart"></i></div>
+            <div class="nav__car">
+                {{-- <i class="fi fi-rr-shopping-cart"></i> --}}
+            </div>
             <div class="con__btn__login">
-                <a href="">Inicie sesión</a>
+                {{-- <a href="">Inicie sesión</a> --}}
             </div>
             <div class="con__link__bot">
                 <a href="">Nuestra tienda</a>
@@ -56,7 +58,7 @@
 
     <footer class="footer">
         <div class="container__footer">
-            <a class="con__logo_footer" href="">
+            <a class="con__logo_footer" href="{{ route('home') }}">
                 <img src="{{ asset('img/logoc.svg') }}" alt="Glory Store" class="logo__full">
             </a>
             <div class="con__red__footer">

@@ -10,18 +10,14 @@
     <div id="carousel__desk" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-current="true" aria-label="Slide2"></button>
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="5000">
-            <img src="https://http2.mlstatic.com/storage/splinter-admin/o:f_webp,q_auto:best/1698758912009-36771393571295374437642243481875204789839902n.png" class="d-block w-100" alt="">
+            <img src="{{ asset('img/glory.jpg') }}" class="d-block w-100" alt="">
           </div>
           <div class="carousel-item" data-bs-interval="5000">
-            <img src="https://http2.mlstatic.com/storage/splinter-admin/o:f_webp,q_auto:best/1698250402561-msdesktopahorraapptucarro1.jpg" class="d-block w-100" alt="">
-          </div>
-          <div class="carousel-item">
-            <img src="https://http2.mlstatic.com/storage/splinter-admin/o:f_webp,q_auto:best/1698759403758-mscarreradesktop1.png" class="d-block w-100" alt="">
+            <img src="{{ asset('img/glory_sup.jpg') }}" class="d-block w-100" alt="">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
@@ -36,20 +32,16 @@
     <div id="carousel__mobile" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-current="true" aria-label="Slide2"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="5000">
-              <img src="https://http2.mlstatic.com/storage/splinter-admin/o:f_webp,q_auto:low/1698758927583-mobikemarcalli.png" class="d-block w-100" alt="">
+              <img src="{{ asset('img/glory.jpg') }}" class="d-block w-100" alt="">
             </div>
             <div class="carousel-item" data-bs-interval="5000">
-              <img src="https://http2.mlstatic.com/storage/splinter-admin/o:f_webp,q_auto:low/1689195521155-mobile.bancos1.png" class="d-block w-100" alt="">
+              <img src="{{ asset('img/glory_sup.jpg') }}" class="d-block w-100" alt="">
             </div>
-            <div class="carousel-item">
-              <img src="https://http2.mlstatic.com/storage/splinter-admin/o:f_webp,q_auto:low/1698759379494-mscarreramobile1.png" class="d-block" alt="">
-            </div>
-        </div>
+          </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -115,10 +107,10 @@
         </div>
     </section>
 
-    <section class="con__section_prods">
+    {{-- <section class="con__section_prods">
         <div class="header__section__prods">
             <h2>Motor</h2>
-            <a href="">Ver todos</a>
+            <a href="{{ route('category.productos', 'Motor') }}">Ver todos</a>
         </div>
         <div class="con__products">
             @foreach ($productsCategory as $product)
@@ -138,9 +130,9 @@
                 </a>
             @endforeach
         </div>
-    </section>
+    </section> --}}
 
-    <section class="con__section_prods section_benefitcs">
+    {{-- <section class="con__section_prods section_benefitcs">
         <div class="header__section__prods">
             <h2>Beneficios de comprar en Glory Store</h2>
         </div>
@@ -174,13 +166,7 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="con__section_prods">
-        <div class="header__section__prods">
-            <h2>Aliados</h2>
-        </div>
-    </section>
+    </section> --}}
 </div>
 @endsection
 @section('scripts')

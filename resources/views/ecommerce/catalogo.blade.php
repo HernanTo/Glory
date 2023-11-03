@@ -51,7 +51,7 @@
             <section class="con__section_prods">
                 <div class="header__section__prods">
                     <h2>{{$category->name}}</h2>
-                    <a href="">Ver todos</a>
+                    <a href="{{ route('category.productos', $category->name) }}">Ver todos</a>
                 </div>
                 <div class="con__products">
                 @foreach ($category->products as $product)

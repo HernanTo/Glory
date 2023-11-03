@@ -97,6 +97,7 @@ Route::prefix('administration')->get('dashboard', [App\Http\Controllers\HomeCont
 
 // Ecommerce
     Route::get('/', [PageController::class, 'index'])->name('home');
+    Route::get('/home', [PageController::class, 'index'])->name('home');
     Route::get('/{slug}/p/', [PageController::class, 'show'])->name('producto.producto');
     Route::get('/{category}/c/', [PageController::class, 'category'])->name('category.productos');
     Route::get('/catalogo', [PageController::class, 'catalogo'])->name('catalogo');
