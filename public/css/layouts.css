@@ -885,6 +885,18 @@ body{
     max-width: 120px;
     text-align: center;
 }
+.divider__form_icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.divider__form_icon i{
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--iron-900);
+}
 
 @media (min-width: 719px){
     .con__two__sub__form{

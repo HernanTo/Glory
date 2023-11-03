@@ -40,6 +40,9 @@ class Product extends Model
     public function categories(){
         return $this->belongsToMany('App\Models\Category', 'product_has_categories');
     }
+    public function bills(){
+        return $this->belongsToMany('App\Models\Bill', 'bills_has_products');
+    }
 
     public function getImagesMainAttribute(){
         if(($this->images->first() == null)){
@@ -47,6 +50,9 @@ class Product extends Model
         }else{
             return $this->images->first()->photo;
         }
+    }
+    public function getNameForAttribute(){
+        return substr($this->name, 0, 25);
     }
 
 }

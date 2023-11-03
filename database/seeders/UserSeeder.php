@@ -59,5 +59,14 @@ class UserSeeder extends Seeder
             'is_active' => '1'
         ]);
         $ClienteWeb->assignRole('Cliente Web');
+
+        $customer = \App\Models\Customer::create([
+            'cc' => '8320102309',
+            'ft_name' => 'Expreso Tocancipá S.A.S.',
+            'phone_number' => '6018574128',
+            'address' => 'CALLE 7A N ° 4 B 13, TOCANCIPA',
+            'profile_photo_path' => 'default.png',
+            'is_active' => '1'
+        ]);
     }
 }

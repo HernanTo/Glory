@@ -14,7 +14,7 @@ class Category extends Model
         'is_active'
     ];
 
-    public function products() : BelongsToMany{
+    public function products(){
         return $this->belongsToMany('App\Models\Product', 'product_has_categories');
     }
 

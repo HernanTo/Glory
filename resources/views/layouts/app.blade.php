@@ -36,26 +36,32 @@
                     <div class="divisor-sidebar">
                         <h4>GESTIÓN</h4>
                     </div>
-                    <a href="{{ route('usuarios') }}" class="items-sidebar">
-                        <i class="fi fi-sr-users-alt"></i>
-                        <p>Usuarios</p>
-                    </a>
-                    <a href="{{route('productos.administration')}}" class="items-sidebar">
-                        <i class="fi fi-sr-ballot-check"></i>
-                        <p>Productos</p>
-                    </a>
-                    <a href="../bill/" class="items-sidebar">
-                        <i class="fi fi-sr-file-invoice-dollar"></i>
-                        <p>Facturas</p>
-                    </a>
+                    @can('see.users')
+                        <a href="{{ route('usuarios') }}" class="items-sidebar">
+                            <i class="fi fi-sr-users-alt"></i>
+                            <p>Usuarios</p>
+                        </a>
+                    @endcan
+                    @can('see.products.dash')
+                        <a href="{{route('productos.administration')}}" class="items-sidebar">
+                            <i class="fi fi-sr-ballot-check"></i>
+                            <p>Productos</p>
+                        </a>
+                    @endcan
+                    @can('see.bills')
+                        <a href="{{ route('bills') }}" class="items-sidebar">
+                            <i class="fi fi-sr-file-invoice-dollar"></i>
+                            <p>Facturas</p>
+                        </a>
+                    @endcan
 
                     <div class="divisor-sidebar">
                         <h4>ADICIONALES</h4>
                     </div>
-                    <a href="../cotizaciones/" class="items-sidebar">
+                    {{-- <a href="../cotizaciones/" class="items-sidebar">
                         <i class="fi fi-sr-person-dolly"></i>
                         <p>Cotizaciones</p>
-                    </a>
+                    </a> --}}
                     <a href="../log/" class="items-sidebar">
                         <i class="fi fi-sr-time-past"></i>
                         <p>Logs</p>

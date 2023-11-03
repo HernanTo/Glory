@@ -40,16 +40,16 @@
             @else
             <h4>Stock no disponible</h4>
             @endif
-            @if ($product->available == 0)
+            @if ($product->available == 0 || $product->stock > 0)
                 <span class="available">Disponibilidad Inmediata</span>
             @endif
-            @if ($product->available == 15)
+            @if ($product->available == 15 && $product->stock <= 0)
             <span class="available available__middle">Disponibilidad 15 días</span>
             @endif
-            @if ($product->available == 30)
+            @if ($product->available == 30 && $product->stock <= 0)
             <span class="available available__long">Disponibilidad 30 días</span>
             @endif
-            @if ($product->available == 30)
+            @if ($product->available == 60 && $product->stock <= 0)
             <span class="available available__long__extra">Disponibilidad 60 días</span>
             @endif
 

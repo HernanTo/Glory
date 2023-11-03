@@ -49,4 +49,8 @@ class Customer extends Model
             return $this->profile_photo_path;
         }
     }
+
+    public function bill(){
+        return $this->belongsTo('App\Models\Bill');
+    }
 }

@@ -1,0 +1,5 @@
+.section_benefitcs .cotent_sect{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    column-gap: 25px;
+}

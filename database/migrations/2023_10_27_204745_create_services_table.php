@@ -19,7 +19,7 @@ class CreateServicesTable extends Migration
             $table->text('name');
             $table->decimal('price');
             $table->timestamps();
-            $table->foreign('id_bill')->references('id')->on('bill');
+            $table->foreign('id_bill')->references('id')->on('bills');
         });
     }
 

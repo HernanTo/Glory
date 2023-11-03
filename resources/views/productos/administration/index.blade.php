@@ -65,7 +65,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>Número Repuesto</th>
+                <th># Repuesto</th>
                 <th>Repuesto</th>
                 <th>Categoria</th>
                 <th>Precio</th>

@@ -45,5 +45,53 @@ body{
 .form__floating__glory{
     position: relative;
 }
+.products__not__found{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    margin-top: 50px;
+}
+.products__not__found i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    color: var(--iron-900);
+}
+.products__not__found h2{
+    color: var(--iron-900);
+    font-family: 'Alata';
+}
+.products__not__found ul li{
+    color: var(--iron-900);
+    font-family: 'Nunito Sans';
+}
+
+.con__filter__list form{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 20px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+.con__filter__list form label{
+    font-family: 'Alata';
+    font-weight: bold;
+    font-size: 16px;
+}
+.con__filter__list form select{
+    font-family: 'Alata';
+    font-size: 16px;
+    outline: none;
+    background: none;
+    border: none;
+    padding: 0px;
+}
+.con__filter__list form select:hover{
+    color: var(--color-primary);
+}
+.con__filter__list form select option{
+    background: none !important;
+}
 
 @keyframes pulsate-fwd{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}

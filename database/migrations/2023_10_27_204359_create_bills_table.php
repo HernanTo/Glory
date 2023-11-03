@@ -15,11 +15,11 @@ class CreateBillsTable extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer');
-            $table->unsignedBigInteger('seller');
+            $table->unsignedBigInteger('id_customer');
+            $table->unsignedBigInteger('id_seller');
 
             $table->tinyInteger('IVA');
-            $table->tinyInteger('payment');
+            $table->tinyInteger('is_paid');
 
             $table->decimal('subtotal');
             $table->decimal('total');
@@ -27,8 +27,8 @@ class CreateBillsTable extends Migration
             $table->tinyInteger('is_active');
             $table->timestamps();
 
-            $table->foreign('customer')->references('id')->on('cliente');
-            $table->foreign('seller')->references('id')->on('users');
+            $table->foreign('id_customer')->references('id')->on('customers');
+            $table->foreign('id_seller')->references('id')->on('users');
         });
     }
 

@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['Motor', 'Caja', 'Suspensión', 'Exteriores'];
+        $categories = ['Motor', 'Caja', 'Suspension', 'Exteriores'];
 
         foreach($categories as $category){
             Category::create([

@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id_bill',
+        'name',
+        'price'
+    ];
+
+    public function bill(){
+        return $this->belongsTo('App\Models\Bill');
+    }
 }

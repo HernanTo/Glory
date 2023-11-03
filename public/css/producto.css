@@ -78,9 +78,26 @@
 .con__actions_vertical .btn-elim-user{
     height: 100% !important;
 }
-.con__actions_vertical .btn-elim-user, .con__actions_vertical .btn__edit__model{
+.con__actions_vertical .btn-elim-user, .con__actions_vertical .btn__edit__model, .con__actions_vertical .btn__add__car__pro, .con__actions_vertical .btn__whatsapp__pro{
     width: 100% !important;
     max-width: none;
+}
+.btn__add__car__pro{
+    border-radius: 8px;
+    font-family: 'Alata';
+    color: var(--color-text);
+    background: var(--color-primary-op);
+    border-style: none;
+}
+.btn__whatsapp__pro{
+    background: var(--iron-900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 8px;
+    column-gap: 10px;
+    color: white;
 }
 .section__info__basic__product{
     padding: 25px 35px;
@@ -147,7 +164,7 @@
 }
 .section__desc_product h5, .section__aditional__info h5{
     font-family: 'Alata';
-    font-size: 19px;
+    font-size: 22px;
     font-weight: 550;
     margin: 0px;
 }
