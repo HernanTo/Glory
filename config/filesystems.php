@@ -35,9 +35,16 @@ return [
             'root' => storage_path('app'),
         ],
 
-        'public' => [
+        'products' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => public_path('img/products'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'users' => [
+            'driver' => 'local',
+            'root' => public_path('img/profileImages'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

@@ -98,7 +98,7 @@ class UserController extends Controller
             'cc' => $request->cc,
             'ft_name' => $request->ft_name,
             'sc_name' => $request->sc_name,
-            'fi_lastname' => $request->fi_lastname,
+            'fi_lastname' => $request->ft_lastname,
             'sc_lastname' => $request ->sc_lastname,
             'phone_number' => $request ->phone,
             'address' => $request ->address,
@@ -117,7 +117,7 @@ class UserController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect('usuarios/add')
+                return redirect('usuarios/create')
                 ->withErrors($validator)
                 ->withInput();
             }else{
@@ -135,7 +135,7 @@ class UserController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect('usuarios/add')
+                return redirect('usuarios/create')
                 ->withErrors($validator)
                 ->withInput();
 
@@ -274,7 +274,7 @@ class UserController extends Controller
             }
 
             $image_name = time() . '.' . $request->imgeProfile->extension();
-            $request->imgeProfile->move(public_path('img/profileImages'), $image_name);
+            $request->imgeProfile->storeAs('/', $image_name, 'users');
         }
 
         if($deleteImages && $item->profile_photo_path != 'default.png'){

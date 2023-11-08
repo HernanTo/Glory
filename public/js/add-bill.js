@@ -628,5 +628,7 @@ document.getElementById('btn__sub_bill').addEventListener('click', event => {
 
             document.getElementById('form-bill').submit();
         })
+    }else if(services.length >= 1){
+        document.getElementById('form-bill').submit();
     }
 });

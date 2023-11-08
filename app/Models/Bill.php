@@ -20,10 +20,11 @@ class Bill extends Model
     ];
 
     public function products(){
-        return $this->belongsToMany('App\Models\Product', 'bills_has_products');
+        return $this->belongsToMany('App\Models\Product', 'bills_has_products', 'id_bill', 'id_product')
+            ->withPivot('price', 'stock', 'discount', 'total_prices');
     }
     public function services(){
-        return $this->hasMany('App\Models\Service');
+        return $this->hasMany('App\Models\Service', 'id_bill');
     }
     public function customer(){
         return $this->hasOne('App\Models\Customer', 'id', 'id_customer');
@@ -39,5 +40,15 @@ class Bill extends Model
         }else{
             return 'Pendiente de Pago';
         }
+    }
+
+    public function getReferenceAttribute($key)
+    {
+        return sprintf("%07s", $this->id);
+    }
+
+    public function getHaveIVAAttribute()
+    {
+       return $this->IVA ? 'Incluye' : 'No contiene';
     }
 }

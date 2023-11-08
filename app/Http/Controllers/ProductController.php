@@ -65,7 +65,7 @@ class ProductController extends Controller
         if(is_array($request->pictures_product) && count($request->pictures_product) > 0 && $request->hasFile('pictures_product')){
             foreach($request->pictures_product as $picture){
                 $image_name = date('mdYHis') . uniqid() . '.' . $picture->extension();
-                $picture->move(public_path('img/products'), $image_name);
+                $picture->storeAs('/', $image_name, 'products');
                 $image = ImageProduct::create(['photo' => $image_name]);
                 $product->images()->save($image);
             }
@@ -171,7 +171,7 @@ class ProductController extends Controller
         if(is_array($request->pictures_product) && count($request->pictures_product) > 0 && $request->hasFile('pictures_product')){
             foreach($request->pictures_product as $picture){
                 $image_name = date('mdYHis') . uniqid() . '.' . $picture->extension();
-                $picture->move(public_path('img/products'), $image_name);
+                $picture->storeAs('/', $image_name, 'products');
                 $image = ImageProduct::create(['photo' => $image_name]);
                 $product->images()->save($image);
             }
@@ -189,7 +189,7 @@ class ProductController extends Controller
     public function destroy(Request $request)
     {
         $product = Product::where('id',$request->id)->update(['is_active' => false]);
-        
+
         return redirect()->route('productos.administration');
     }
 }

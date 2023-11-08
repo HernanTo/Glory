@@ -41,7 +41,8 @@ class Product extends Model
         return $this->belongsToMany('App\Models\Category', 'product_has_categories');
     }
     public function bills(){
-        return $this->belongsToMany('App\Models\Bill', 'bills_has_products');
+        return $this->belongsToMany('App\Models\Bill', 'bills_has_products', 'id_product', 'id_bill')
+            ->withPivot('price', 'stock', 'discount', 'total_prices');
     }
 
     public function getImagesMainAttribute(){

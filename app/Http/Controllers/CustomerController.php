@@ -85,10 +85,10 @@ class CustomerController extends Controller
             }
 
             $image_name = time() . '.' . $request->imgeProfile->extension();
-            $request->imgeProfile->move(public_path('img/profileImages'), $image_name);
+            $request->imgeProfile->storeAs('/', $image_name, 'users');
         }
 
-        if($deleteImages){
+        if($deleteImages && $item->profile_photo_path != 'default.png'){
             if (file_exists(public_path('img/profileImages/' . $item->profile_photo_path))) {
                 unlink(public_path('img/profileImages/' . $item->profile_photo_path));
             }
@@ -107,6 +107,6 @@ class CustomerController extends Controller
             'profile_photo_path' => $image_name
         ]);
 
-        return redirect('usuarios');
+        return redirect()->route('usuarios');
     }
 }

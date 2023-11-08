@@ -39,19 +39,25 @@
                     </select>
                     <a class="input__add__user__bill btn-modal-add" id="btn-add-customer" href="{{route('usuarios.create')}}"><i class="fi fi-br-plus-small"></i> Añadir</a>
                 </div>
-                <div class="con-select-s">
-                    <label for="seller">Vendedor:</label>
-                    <select name="seller" id="sellers">
-                        <option value=""></option>
-                        @foreach ($sellersPer as $seller)
+                @can('link.sellers.bills')
+                    <div class="con-select-s">
+                        <label for="seller">Vendedor:</label>
+                        <select name="seller" id="sellers">
+                            <option value=""></option>
+                            @foreach ($sellersPer as $seller)
                             <option value="{{ $seller->id }}">({{$seller->cc}}) - {{$seller->fullName}}</option>
-                        @endforeach
-                        @foreach ($sellersRole as $seller)
+                            @endforeach
+                            @foreach ($sellersRole as $seller)
                             <option value="{{ $seller->id }}">({{$seller->cc}}) - {{$seller->fullName}}</option>
-                        @endforeach
+                            @endforeach
+                        </select>
+                        <a class="input__add__user__bill btn-modal-add" id="btn-add-customer" href="{{route('usuarios.create')}}"><i class="fi fi-br-plus-small"></i> Añadir</a>
+                    </div>
+                @else
+                    <select name="seller" id="sellers" style="display: none">
+                        <option value="{{auth()->user()->id}}"> {{auth()->user()->id}} </option>
                     </select>
-                    <a class="input__add__user__bill btn-modal-add" id="btn-add-customer" href="{{route('usuarios.create')}}"><i class="fi fi-br-plus-small"></i> Añadir</a>
-                </div>
+                @endcan
                 <div class="con-select-s">
                     <label for="products">Lista de productos:</label>
                         <select name="products" id="products">
@@ -169,10 +175,6 @@
             placeholder: "Seleccione un cliente",
             allowClear: true
         });
-        $('#sellers').select2({
-            placeholder: "Seleccione un cliente",
-            allowClear: true
-        });
         $('#products').select2({
             placeholder: "Seleccione los productos",
             allowClear: true
@@ -187,6 +189,18 @@
         prices[i].appendChild(document.createTextNode(formatCurrency(precio)));
     }
 </script>
+
+@can('link.sellers.bills')
+<script>
+    $(document).ready(function() {
+        $('#sellers').select2({
+            placeholder: "Seleccione un cliente",
+            allowClear: true
+        });
+    });
+</script>
+@endcan
+
 @endsection
 
 

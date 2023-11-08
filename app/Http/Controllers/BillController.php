@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class BillController extends Controller
 {
@@ -170,15 +171,33 @@ class BillController extends Controller
 
     }
 
+    public function export($id){
+        $bill = Bill::find($id);
+
+        if(!$bill){
+            abort(404);
+        }
+
+        view()->share('facturas.export',$bill);
+        $pdf = FacadePdf::loadView('facturas.export', ['bill' => $bill]);
+        return $pdf->download('Factura.pdf');
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Bill  $bill
      * @return \Illuminate\Http\Response
      */
-    public function show(Bill $bill)
+    public function show($id)
     {
-        //
+        $bill = Bill::find($id);
+
+        if(!$bill){
+            abort(404);
+        }
+
+        return view('facturas.bill', ['bill' => $bill]);
     }
 
     /**

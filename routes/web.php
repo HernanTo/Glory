@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
-Route::prefix('administration')->get('dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::get('/administration', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 // Usuarios
     Route::group(
@@ -80,6 +80,10 @@ Route::prefix('administration')->get('dashboard', [App\Http\Controllers\HomeCont
 
             Route::get('/{referencia}', [BillController::class, 'show'])
                 ->name('bills.bill');
+
+            Route::get('/{referencia}/export', [BillController::class, 'export'])
+                ->name('bills.export')
+                ->middleware('can:see.bills');
 
             Route::get('/{referencia}/edit', [BillController::class, 'edit'])
                 ->name('bills.edit')

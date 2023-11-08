@@ -41,11 +41,21 @@
             @foreach ($bills as $bill)
                 <tr>
                     <td> {{$bill->created_at}} </td>
-                    <td>{{sprintf("%07s", $bill->id)}}</td>
+                    <td>{{$bill->reference}}</td>
                     <td>{{($bill->customer->nameLast)}}</td>
                     <td> {{$bill->state}} </td>
-                    <td> {{$bill->total}} </td>
-                    <td></td>
+                    <td class="prices"> {{$bill->total}} </td>
+                    <td class="con-actions-table">
+                        @can('see.bills')
+                            <a href="{{ route('bills.bill', $bill->id) }}" class="actions-table action__table_show"><i class="fi fi-br-eye"></i></a>
+                        @endcan
+                        @can('edit.bills')
+                            <a href="{{ route('bills.edit', $bill->id) }}" class="actions-table action__table_edit"><i class="fi fi-sr-pencil"></i></a>
+                        @endcan
+                        @can('destroy.bills')
+                            <a onclick="confirmTrash({{ $bill->id }}, '{{ $bill->reference }}')" class="actions-table action__table_delete"><i class="fi fi-sr-trash-xmark"></i></a>
+                        @endcan
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -62,7 +72,7 @@
     </table>
 </div>
 
-@include('productos.administration.modal')
+@include('facturas.modal')
 
 @endsection
 @section('scripts')
