@@ -179,8 +179,15 @@ class BillController extends Controller
         }
 
         view()->share('facturas.export',$bill);
-        $pdf = FacadePdf::loadView('facturas.export', ['bill' => $bill]);
-        return $pdf->download('Factura.pdf');
+        $pdf = FacadePdf::setOptions([
+            'enable_remote' => true,
+            'enable_svg' => true,
+            'isFontSubsettingEnabled' => true,
+            'defaultMediaType' =>'all',
+            'isFontSubsettingEnabled'=> true,
+        ])
+                        ->loadView('facturas.export', ['bill' => $bill]);
+        return $pdf->stream('Factura.pdf');
     }
 
     /**

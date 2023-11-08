@@ -18,30 +18,30 @@
         }
         @font-face {
         font-family: "Alata";
-        src: url("https://raw.githubusercontent.com/HernanTo/lotus/bill/assets/formatos/font/alata/Alata-Regular.ttf") format("truetype");
+        src: url("https://raw.githubusercontent.com/HernanTo/Glory-store/deploy/public/fonts/alata/Alata-Regular.ttf") format("truetype");
         font-weight: bold;
         }
         @font-face {
         font-family: "Poppins";
-        src: url("https://raw.githubusercontent.com/HernanTo/lotus/bill/assets/formatos/font/Poppins/Poppins-Regular.ttf") format("truetype");
+        src: url("https://raw.githubusercontent.com/HernanTo/Glory-store/deploy/public/fonts/Poppins-Regular.ttf") format("truetype");
         font-weight: normal;
         }
 
         @font-face {
         font-family: "Poppins";
-        src: url("https://raw.githubusercontent.com/HernanTo/lotus/bill/assets/formatos/font/Poppins/Poppins-SemiBold.ttf") format("truetype");
+        src: url("https://raw.githubusercontent.com/HernanTo/Glory-store/deploy/public/fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
         font-weight: bold;
         }
 
         @font-face {
         font-family: "Nunito";
-        src: url("https://raw.githubusercontent.com/HernanTo/lotus/bill/assets/formatos/font/Nunito_Sans/static/NunitoSans_10pt-Regular.ttf") format("truetype");
+        src: url("https://raw.githubusercontent.com/HernanTo/Glory-store/deploy/public/fonts/Nunito_Sans/static/NunitoSans_10pt-Regular.ttf") format("truetype");
         font-weight: normal;
         }
 
         @font-face {
         font-family: "Nunito";
-        src: url("https://raw.githubusercontent.com/HernanTo/lotus/bill/assets/formatos/font/Nunito_Sans/static/NunitoSans_10pt-Bold.ttf") format("truetype");
+        src: url("https://raw.githubusercontent.com/HernanTo/Glory-store/deploy/public/fonts/Nunito_Sans/static/NunitoSans_10pt-Bold.ttf") format("truetype");
         font-weight: bold;
         }
         @page {
@@ -59,7 +59,7 @@
             background: white;
             width: 100%;
             max-width: 700px;
-            height: 180px;
+            height: 210px;
         }
         hr{
             margin: 0px
@@ -79,11 +79,11 @@
             background: #505765;
             color: white;
             width: 100%;
-            padding: 30px 0px 40px 0px;
+            padding: 40px 0px 40px 0px;
             margin: 0px;
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
-            margin-top: -25px;
+            margin-top: -1px;
         }
 
         .header table .info_bill b{
@@ -95,6 +95,7 @@
         .info_lotus{
             text-align: right;
             font-size: 14px;
+            font-family: 'Nunito';
         }
         .table_info_usr{
             text-align: left;
@@ -137,7 +138,7 @@
             background: #505765;
             color: white;
             font-family: "Alata";
-            font-size: 12.5px
+            font-size: 11px
         }
         .table__b tbody tr{
             background: rgba(201, 201, 201, 0.5);
@@ -199,14 +200,14 @@
                     CL 64 103A-33, Bogotá
                 </td>
                 <td style="width: 220px; text-align: center;">
-                    <img src="https://raw.githubusercontent.com/HernanTo/Glory-Store/master/assets/img/icons/Logo_glory.png" alt="logo_lotus" class="logo__lotus">
+                    <img src="" alt="logo_lotus" class="logo__lotus">
                 </td>
             </tr>
         </table>
         <table class="table_infoo">
             <tr class="info_bill">
-                <td><b>NÚMERO DE COTIZACIÓN: </b> </td>
-                <td style="text-align: right;"><b> </td>
+                <td><b>NÚMERO DE COTIZACIÓN: </b>  {{$bill->reference}} </td>
+                <td style="text-align: right;"><b>FECHA DE FACTURA: </b> {{$bill->created_at->format('d-m-Y')}} </td>
             </tr>
         </table>
         <hr>
@@ -218,6 +219,7 @@
                     <tr class="th__main_usr">
                         <th height="40" style="text-align: left; width: 50%;">DATOS CLIENTE</th>
                         {{-- <th class="colm_sc" height="40">INFORMACIÓN VEHÍCULO</th> --}}
+                        <th class="colm_sc" height="40"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -226,6 +228,7 @@
                             <b>Nombre: </b>
                             {{$bill->customer->fullName}}
                         </td>
+                        <td class="colm_sc"> </td>
                         {{-- <td class="colm_sc"><b>Modelo:</b> </td> --}}
 
                     </tr>
