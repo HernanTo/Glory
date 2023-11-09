@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Facturas | Glory Store')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('libs/datatable/datatables.min.css') }}">

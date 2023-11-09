@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Crear Factura | Glory Store')
+@section('title', 'Crear Cotización | Glory Store')
 
 @section('styles')
     <link rel="stylesheet" href="{{asset('/libs/selects/select2.min.css')}}">
@@ -12,17 +12,17 @@
         <div class="bread-cump">
             <a href="{{ route('dashboard') }}">Home</a>
             /
-            <a href="{{ route('bills') }}">Facturas</a>
+            <a href="{{ route('budgets') }}">Cotizaciones</a>
             /
-            <a>Nueva Factura</a>
+            <a>Nueva cotización</a>
         </div>
-        <h2>Nueva Factura</h2>
+        <h2>Nueva cotización</h2>
     </div>
     <div class="container-forr">
-        <form action="{{route('bills.store')}}" method="post" id="form-bill">
+        <form action="{{route('budgets.store')}}" method="post" id="form-bill">
             @csrf
             <div class="divider__form divider__form_icon">
-                <h2>Información básica de la factura</h2>
+                <h2>Información básica de la cotización</h2>
                 <i class="fi fi-sr-comment-info"></i>
             </div>
             <section class="sect__form__p">
@@ -40,7 +40,7 @@
                     </select>
                     <a class="input__add__user__bill btn-modal-add" id="btn-add-customer" href="{{route('usuarios.create')}}"><i class="fi fi-br-plus-small"></i> Añadir</a>
                 </div>
-                @can('link.sellers.bills')
+                @can('link.sellers.budgets')
                     <div class="con-select-s">
                         <label for="seller">Vendedor:</label>
                         <select name="seller" id="sellers">
@@ -83,50 +83,20 @@
                     <h5>Aún no se han agregado repuestos</h5>
                 </div>
             </div>
-            <div class="divider__form divider__form_icon">
-                <h2>Servicios de la factura</h2>
-                <i class="fi fi-sr-settings-sliders"></i>
-            </div>
-            <section class="sect__form__p con__servs">
-                <div class="con__insert__serv">
-                    <div class="inserts-serv">
-                        <label>Ingresar</label>
-                        <input type="number" class="form-control" id="can_serv_insert" placeholder="Cantidad Servicios" style="margin-bottom: 20px">
 
-                        <button type="button" id="btn-inser-serv">Insertar</button>
-                    </div>
-                    <div class="insert__serv">
-                        <button id="add-serv" type="button"><i class="fi fi-br-plus-small"></i>Insertar servicio</button>
-                    </div>
-                </div>
-                <div class="con-serv" id="con-serv">
-                    <div class="not-pro-ord not-serv-ord" id="not-serv-ord">
-                        <h5>Aún no se han agregado servicios</h5>
-                    </div>
-                </div>
-            </section>
             <div class="divider__form divider__form_icon">
-                <h2>Configuración Factura</h2>
+                <h2>Configuración cotización</h2>
                 <i class="fi fi-sr-settings-sliders"></i>
             </div>
             <section class="sect__form__p sect__setings">
                 <article>
-                    <h4>Preferencias Factura</h4>
+                    <h4>Preferencias cotización</h4>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="iva__check" name="iva__check" checked>
                         <label class="form-check-label" for="iva">Incluir IVA</label>
                     </div>
                 </article>
 
-                <article>
-                    <h4>Estado de la factura</h4>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="is_paid" name="is_paid" checked>
-                        <label class="form-check-label" for="is_paid">
-                          Pagada
-                        </label>
-                    </div>
-                </article>
             </section>
             <div class="divider__form divider__form_icon">
                 <h2>Resumen</h2>
@@ -136,10 +106,6 @@
                 <div class="info-fact">
                     <h3>IVA: </h3>
                     <p id="iva_info" class="prices">0</p>
-                </div>
-                <div class="info-fact">
-                    <h3>Estado: </h3>
-                    <p id="estado__pago">Pagada</p>
                 </div>
                 <div class="info-fact">
                     <h3>Subtotal: </h3>
@@ -158,7 +124,7 @@
     </div>
 </div>
 
-@include('facturas.modal')
+@include('cotizaciones.modal')
 @endsection
 @section('scripts')
 <script>
@@ -168,7 +134,7 @@
 
 <script src="{{ asset('libs/selects/select2.min.js') }}"></script>
 <script src="{{ asset('js/currencyPrice.js') }}"></script>
-<script src="{{ asset('js/add-bill.js') }}"></script>
+<script src="{{ asset('js/add-cotizacion.js') }}"></script>
 
 <script>
     $(document).ready(function() {
@@ -191,7 +157,7 @@
     }
 </script>
 
-@can('link.sellers.bills')
+@can('link.sellers.budgets')
 <script>
     $(document).ready(function() {
         $('#sellers').select2({

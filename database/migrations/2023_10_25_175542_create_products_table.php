@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('barcode')->unique();
-            $table->bigInteger('num_repuesto')->unique();
+            $table->string('num_repuesto', '500')->unique();
             $table->string('slug')->unique();
 
             $table->string('name', 100);

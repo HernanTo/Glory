@@ -1,5 +1,6 @@
 
 @extends('layouts.guest')
+@section('title', 'Taller Glory Store')
 
 @section('styles')
 <link href="{{ asset('css/index.css') }}" rel="stylesheet">

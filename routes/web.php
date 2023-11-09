@@ -5,14 +5,20 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BudgetController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Auth::routes();
+Auth::routes(['login' => false]);
+
+Route::prefix('administration')->group(function () {
+    Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+});
 
 
-Route::get('/administration', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::get('/administration', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware('can:getInto.administration');
 
 // Usuarios
     Route::group(
@@ -99,9 +105,47 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
     });
 // Facturas
 
+// Cotizaciones
+    Route::group(
+        [
+            'middleware' => ['auth', 'can:see.budgets'],
+            'prefix' => 'administration/cotizaciones'
+        ], function (){
+            Route::get('/', [BudgetController::class, 'index'])
+                ->name('budgets');
+
+            Route::get('/create', [BudgetController::class, 'create'])
+                ->name('budgets.create')
+                ->middleware('can:see.budgets');
+
+            Route::post('/store', [BudgetController::class, 'store'])
+                ->name('budgets.store')
+                ->middleware('can:create.budgets');
+
+            Route::get('/{referencia}', [BudgetController::class, 'show'])
+                ->name('budgets.budget');
+
+            Route::get('/{referencia}/export', [BudgetController::class, 'export'])
+                ->name('budgets.export')
+                ->middleware('can:see.budgets');
+
+            Route::get('/{referencia}/edit', [BudgetController::class, 'edit'])
+                ->name('budgets.edit')
+                ->middleware('can:edit.budgets');
+
+            Route::put('/{product}/update', [BudgetController::class, 'update'])
+                ->name('budgets.update')
+                ->middleware('can:edit.budgets');
+
+            Route::post('/destroy', [BudgetController::class, 'destroy'])
+                ->name('budgets.destroy')
+                ->middleware('can:destroy.budgets');
+    });
+// Cotizaciones
+
 // Ecommerce
+    Route::get('/home', [PageController::class, 'index']);
     Route::get('/', [PageController::class, 'index'])->name('home');
-    Route::get('/home', [PageController::class, 'index'])->name('home');
     Route::get('/{slug}/p/', [PageController::class, 'show'])->name('producto.producto');
     Route::get('/{category}/c/', [PageController::class, 'category'])->name('category.productos');
     Route::get('/catalogo', [PageController::class, 'catalogo'])->name('catalogo');

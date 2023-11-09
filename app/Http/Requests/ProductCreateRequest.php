@@ -25,7 +25,7 @@ class ProductCreateRequest extends FormRequest
     {
         return [
             'barcode' => 'required|numeric|unique:products,barcode',
-            'num_repuesto' => 'required|numeric|unique:products,num_repuesto',
+            'num_repuesto' => 'required|string|unique:products,num_repuesto',
             'name' => 'required',
             'category' => 'required',
             'price' => 'required',

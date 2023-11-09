@@ -1,4 +1,5 @@
 @extends('layouts.guest')
+@section('title',  $category->name  . ' | Glory Store')
 
 @section('styles')
 <link rel="stylesheet" href="{{asset('css/producto.css')}}">

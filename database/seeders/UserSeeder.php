@@ -30,43 +30,43 @@ class UserSeeder extends Seeder
         ]);
         $admin->assignRole('Administrador');
 
-        // $seller = \App\Models\User::create([
-        //     'cc' => '1020304050',
-        //     'ft_name' => 'Vendedor',
-        //     'sc_name' => '',
-        //     'fi_lastname' => '',
-        //     'sc_lastname' => '',
-        //     'phone_number' => '2',
-        //     'address' => 'Bogotá',
-        //     'password' => Hash::make('1020304050'),
-        //     'pass_change' => '0',
-        //     'profile_photo_path' => 'default.png',
-        //     'is_active' => '1'
-        // ]);
-        // $seller->assignRole('Vendedor');
+        $seller = \App\Models\User::create([
+            'cc' => '1020304050',
+            'ft_name' => 'Vendedor',
+            'sc_name' => '',
+            'fi_lastname' => '',
+            'sc_lastname' => '',
+            'phone_number' => '2',
+            'address' => 'Bogotá',
+            'password' => Hash::make('1020304050'),
+            'pass_change' => '0',
+            'profile_photo_path' => 'default.png',
+            'is_active' => '1'
+        ]);
+        $seller->assignRole('Vendedor');
 
-        // $ClienteWeb = \App\Models\User::create([
-        //     'cc' => '9080706050',
-        //     'ft_name' => 'Cliente Web',
-        //     'sc_name' => '',
-        //     'fi_lastname' => '',
-        //     'sc_lastname' => '',
-        //     'phone_number' => '3',
-        //     'address' => 'Bogotá',
-        //     'password' => Hash::make('9080706050'),
-        //     'pass_change' => '0',
-        //     'profile_photo_path' => 'default.png',
-        //     'is_active' => '1'
-        // ]);
-        // $ClienteWeb->assignRole('Cliente Web');
+        $ClienteWeb = \App\Models\User::create([
+            'cc' => '9080706050',
+            'ft_name' => 'Cliente Web',
+            'sc_name' => '',
+            'fi_lastname' => '',
+            'sc_lastname' => '',
+            'phone_number' => '3',
+            'address' => 'Bogotá',
+            'password' => Hash::make('9080706050'),
+            'pass_change' => '0',
+            'profile_photo_path' => 'default.png',
+            'is_active' => '1'
+        ]);
+        $ClienteWeb->assignRole('Cliente Web');
 
-        // $customer = \App\Models\Customer::create([
-        //     'cc' => '8320102309',
-        //     'ft_name' => 'Expreso Tocancipá S.A.S.',
-        //     'phone_number' => '6018574128',
-        //     'address' => 'CALLE 7A N ° 4 B 13, TOCANCIPA',
-        //     'profile_photo_path' => 'default.png',
-        //     'is_active' => '1'
-        // ]);
+        $customer = \App\Models\Customer::create([
+            'cc' => '8320102309',
+            'ft_name' => 'Expreso Tocancipá S.A.S.',
+            'phone_number' => '6018574128',
+            'address' => 'CALLE 7A N ° 4 B 13, TOCANCIPA',
+            'profile_photo_path' => 'default.png',
+            'is_active' => '1'
+        ]);
     }
 }

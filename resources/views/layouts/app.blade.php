@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Glory Store') }}</title>
+    <title>@yield('title', 'Glory Store')</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
@@ -58,10 +58,12 @@
                     <div class="divisor-sidebar">
                         <h4>ADICIONALES</h4>
                     </div>
-                    {{-- <a href="../cotizaciones/" class="items-sidebar">
-                        <i class="fi fi-sr-person-dolly"></i>
-                        <p>Cotizaciones</p>
-                    </a> --}}
+                    @can('see.budgets')
+                        <a href="{{ route('budgets') }}" class="items-sidebar">
+                            <i class="fi fi-sr-person-dolly"></i>
+                            <p>Cotizaciones</p>
+                        </a>
+                    @endcan
                     <a href="../log/" class="items-sidebar">
                         <i class="fi fi-sr-time-past"></i>
                         <p>Logs</p>

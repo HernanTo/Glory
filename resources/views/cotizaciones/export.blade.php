@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Factura</title>
+    <title>Cotización</title>
     <style>
         body{
             margin: 0px;
@@ -185,6 +185,13 @@
         .name_tall{
             font-size: 17px;
         }
+        .alert_cotizacion{
+            max-width: 250px;
+            text-align: center;
+            font-family: 'Nunito';
+            font-weight: bold;
+            font-size: 15px
+        }
     </style>
 </head>
 <body>
@@ -192,7 +199,7 @@
         <table class="table_infoo">
             <tr>
                 <td style="width: 220px;">
-                    <div class="head_con"><h2>FACTURA</h2></div>
+                    <div class="head_con"><h2>COTIZACIÓN</h2></div>
                 </td>
                 <td class="info_lotus">
                     <b class="name_tall">Glory Store</b>  <br>
@@ -208,8 +215,8 @@
         </table>
         <table class="table_infoo">
             <tr class="info_bill">
-                <td><b>NÚMERO DE COTIZACIÓN: </b>  {{$bill->reference}} </td>
-                <td style="text-align: right;"><b>FECHA DE FACTURA: </b> {{$bill->created_at->format('d-m-Y')}} </td>
+                <td><b>NÚMERO DE COTIZACIÓN: </b>  {{$budget->reference}} </td>
+                <td style="text-align: right;"><b>FECHA DE LA COTIZACIÓN: </b> {{$budget->created_at->format('d-m-Y')}} </td>
             </tr>
         </table>
         <hr>
@@ -228,32 +235,32 @@
                     <tr>
                         <td>
                             <b>Nombre: </b>
-                            {{$bill->customer->fullName}}
+                            {{$budget->customer->fullName}}
                         </td>
                         <td class="colm_sc"> </td>
                         {{-- <td class="colm_sc"><b>Modelo:</b> </td> --}}
 
                     </tr>
                     <tr>
-                        <td><b>Dirección: </b> {{$bill->customer->address}}</td>
+                        <td><b>Dirección: </b> {{$budget->customer->address}}</td>
                         {{-- <td class="colm_sc"><b>Placa:</b> </td> --}}
                     </tr>
                     <tr>
-                        <td colspan="2"><b>NIT/CC:</b> {{$bill->customer->cc}}</td>
+                        <td colspan="2"><b>NIT/CC:</b> {{$budget->customer->cc}}</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><b>Teléfono:</b> {{$bill->customer->phone_number}}</td>
+                        <td colspan="2"><b>Teléfono:</b> {{$budget->customer->phone_number}}</td>
                     </tr>
                     <tr>
                         <td></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><b>Técnico/Vendedor: </b> {{$bill->seller->fullName}}</td>
+                        <td colspan="2"><b>Técnico/Vendedor: </b> {{$budget->seller->fullName}}</td>
                     </tr>
                 </tbody>
             </table>
             <hr>
-                @if (count($bill->products) >= 1)
+                @if (count($budget->products) >= 1)
                     <div class="con_table">
                         <table class="table__b">
                             <thead>
@@ -261,6 +268,7 @@
                                     <th>CÓDIGO</th>
                                     <th>REPUESTO</th>
                                     <th>CANT.</th>
+                                    <th>STOCK</th>
                                     <th>COSTO/U</th>
                                     <th>COSTO/T</th>
                                     <th>DESCUENTO %</th>
@@ -273,11 +281,19 @@
                                     $subtProducts = 0;
                                     $discount = 0;
                                 @endphp
-                                @foreach ($bill->products as $product)
+                                @foreach ($budget->products as $product)
+                                    @php
+                                        if($product->pivot->stock <= $product->stock){
+                                            $stock = 'Si';
+                                        }else{
+                                            $stock = 'No';
+                                        }
+                                    @endphp
                                     <tr class="{{ $loop->even ? 'odd' : 'even-row' }}">
                                         <td> {{$product->num_repuesto}} </td>
                                         <td> {{$product->name}} </td>
                                         <td> {{$product->pivot->stock}} </td>
+                                        <td> {{$stock}} </td>
                                         <td> {{formatCurrency($product->pivot->price)}} </td>
                                         <td> {{formatCurrency($product->pivot->price * $product->pivot->stock)}} </td>
                                         <td> {{$product->pivot->discount}}% </td>
@@ -290,40 +306,8 @@
                                     @endphp
                                 @endforeach
                                 <tr class="subtr">
-                                    <td colspan="7" class="subtd"><b>SUBTOTAL REPUESTOS: </b></td>
+                                    <td colspan="8" class="subtd"><b>SUBTOTAL REPUESTOS: </b></td>
                                     <td> {{formatCurrency($subtProducts)}} </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                @endif
-                @php
-                    $subtServices = 0;
-                @endphp
-                @if (count($bill->services) >= 1)
-                    <div class="con_table">
-                        <table class="table__b">
-                            <thead>
-                                <tr>
-                                    <th>SERVICIOS REALIZADOS</th>
-                                    <th>PRECIO</th>
-                                    <th>TOTAL</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($bill->services as $service)
-                                    <tr class="{{ $loop->even ? 'odd' : 'even-row' }}">
-                                        <td> {{ $service->name}} </td>
-                                        <td> {{ formatCurrency($service->price)}} </td>
-                                        <td> {{ formatCurrency($service->price)}} </td>
-                                    </tr>
-                                    @php
-                                        $subtServices += $service->price;
-                                    @endphp
-                                @endforeach
-                                <tr class="subtr">
-                                    <td colspan="2" class="subtd"><b>SUBTOTAL SERVICIOS:</b></td>
-                                    <td> {{formatCurrency($subtServices) }} </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -338,17 +322,19 @@
                         <tr>
                             <td><b>DESCUENTO: </b> - {{formatCurrency($discount)}}</td>
                         </tr>
-                    @endif
-                    <tr>
-                        <td><b>SUBTOTAL: </b> {{formatCurrency($bill->subtotal)}} </td>
-                    </tr>
-                    @if ($bill->IVA)
+                        @endif
                         <tr>
-                            <td><b>IVA: </b> {{formatCurrency($bill->subtotal * 0.19)}} </td>
+                        <td rowspan="3" class="alert_cotizacion">Sujeto a variación de precio y stock. <br>
+                            Cotización válida hasta {{$date->format('d-m-Y')}}</td>
+                        <td><b>SUBTOTAL: </b> {{formatCurrency($budget->subtotal)}} </td>
+                    </tr>
+                    @if ($budget->IVA)
+                        <tr>
+                            <td><b>IVA: </b> {{formatCurrency($budget->subtotal * 0.19)}} </td>
                         </tr>
                     @endif
                     <tr>
-                        <td><b>TOTAL: </b>  {{formatCurrency($bill->total)}}</td>
+                        <td><b>TOTAL: </b>  {{formatCurrency($budget->total)}}</td>
                     </tr>
                 </table>
             </div>

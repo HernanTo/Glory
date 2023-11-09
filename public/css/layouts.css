@@ -845,7 +845,7 @@ body{
     color: var(--color-text);
     border-radius: 10px;
     font-size: 16px;
-    height: 45px;
+    height: 100%;
 }
 .con__two__sub__form .btn__subm:hover, .btn__subm:hover{
     animation:pulsate-fwd .5s ease-in-out infinite both

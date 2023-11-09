@@ -45,6 +45,11 @@ class Product extends Model
             ->withPivot('price', 'stock', 'discount', 'total_prices');
     }
 
+    public function budgets(){
+        return $this->belongsToMany('App\Models\Budget', 'budgets_has_products', 'id_product', 'id_budget')
+            ->withPivot('price', 'stock', 'discount', 'total_prices');
+    }
+
     public function getImagesMainAttribute(){
         if(($this->images->first() == null)){
             return 'default.png';

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title',  $product->name . ' | Glory Store')
 
 @section('styles')
 <link rel="stylesheet" href="{{asset('libs/xZoom/xzoom.min.css')}}">

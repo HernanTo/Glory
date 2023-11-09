@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Crear usuario | Glory Store')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('libs/selects/select2.min.css') }}">

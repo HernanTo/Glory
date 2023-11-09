@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = 'dashboard';
 
     /**
      * Create a new controller instance.
@@ -41,7 +41,6 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // echo 'a';
         $this -> validate($request, [
             'ide' => 'required',
             'password' => 'required'
@@ -50,6 +49,15 @@ class LoginController extends Controller
 
         if(auth()->attempt(['cc' => $request['ide'], 'password' => $request['password']]))
         {
+            $user = auth()->user();
+
+            if ($user->can('getInto.administration')) {
+                return redirect()->route('dashboard');
+            } else {
+                auth()->logout();
+                return redirect()->route('login')->with('error', 'No tienes permisos para acceder.');
+            }
+
             return redirect()->route('dashboard');
         }else{
             return redirect()->route('login')

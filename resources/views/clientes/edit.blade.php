@@ -128,6 +128,7 @@
 @endforeach
 
 @include('usuarios.modal')
+@section('title', 'Editar usuario | Glory Store')
 
 @endsection
 

@@ -58,12 +58,20 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'destroy.products.dash'])->syncRoles([$administrador, $gerente]);
     // Permission Product
 
-        // Permission Bills
+    // Permission Bills
         Permission::create(['name' => 'see.bills'])->syncRoles([$administrador, $gerente, $servicios, $vendedor]);
         Permission::create(['name' => 'create.bills'])->syncRoles([$administrador, $gerente, $servicios, $vendedor]);
         Permission::create(['name' => 'link.sellers.bills'])->syncRoles([$administrador, $gerente]);
         Permission::create(['name' => 'edit.bills'])->syncRoles([$administrador, $gerente]);
         Permission::create(['name' => 'destroy.bills'])->syncRoles([$administrador, $gerente]);
     // Permission Bills
+
+    // Permission budgets
+        Permission::create(['name' => 'see.budgets'])->syncRoles([$administrador, $gerente, $servicios, $vendedor]);
+        Permission::create(['name' => 'create.budgets'])->syncRoles([$administrador, $gerente, $servicios, $vendedor]);
+        Permission::create(['name' => 'link.sellers.budgets'])->syncRoles([$administrador, $gerente]);
+        Permission::create(['name' => 'edit.budgets'])->syncRoles([$administrador, $gerente]);
+        Permission::create(['name' => 'destroy.budgets'])->syncRoles([$administrador, $gerente]);
+    // Permission budgets
 }
 }

@@ -1,4 +1,5 @@
 @extends('layouts.guest')
+@section('title', 'Catálogo | Glory Store')
 
 @section('styles')
 <link rel="stylesheet" href="{{asset('libs/xZoom/xzoom.min.css')}}">

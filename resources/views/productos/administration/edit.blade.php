@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Editar producto | Glory Store')
 
 @section('styles')
 <link rel="stylesheet" href="{{asset('/css/add-product.css')}}">

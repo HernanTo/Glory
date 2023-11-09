@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Factura | Glory Store')
+@section('title', 'Cotización | Glory Store')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/bill.css') }}">
@@ -11,67 +11,61 @@
         <div class="bread-cump">
             <a href="{{ route('dashboard') }}">Home</a>
             /
-            <a href="{{ route('bills') }}">Facturas</a>
+            <a href="{{ route('bills') }}">Cotización</a>
             /
-            <a>{{$bill->reference}}</a>
+            <a>{{$budget->reference}}</a>
         </div>
-        <h2>Resumen factura</h2>
+        <h2>Resumen Cotización</h2>
     </div>
     <div class="con-bill-summary">
         <div class="con-items-bill-s con-items-fact">
             <div class="header-items-s">
-                <h2>Factura</h2>
+                <h2>Cotización</h2>
                 <i class="fi fi-sr-receipt"></i>
             </div>
             <div class="body-items-sum body-items-fact">
                 <span>
-                    <label>Número de factura</label>
-                    <h3> {{$bill->reference}} </h3>
+                    <label>Número de cotización</label>
+                    <h3> {{$budget->reference}} </h3>
                     <i class="fi fi-br-hastag"></i>
                 </span>
 
                 <span>
                     <label>Fecha</label>
-                    <h3> {{$bill->created_at}} </h3>
+                    <h3> {{$budget->created_at}} </h3>
                     <i class="fi fi-sr-calendar-day"></i>
-                </span>
-
-                <span>
-                    <label>Estado de pago</label>
-                    <h3>{{$bill->state}}</h3>
-                    <i class="fi fi-sr-hand-holding-usd"></i>
                 </span>
 
                 <span>
                     <label>IVA</label>
 
-                    <h3>{{$bill->haveIVA}}</h3>
+                    <h3>{{$budget->haveIVA}}</h3>
                     <i class="fi fi-sr-badge-percent"></i>
                 </span>
 
                 <span>
                     <label>Subtotal</label>
-                    <h3 class="prices"> {{$bill->subtotal}} </h3>
+                    <h3 class="prices"> {{$budget->subtotal}} </h3>
                     <i class="fi fi-br-plus-minus"></i>
                 </span>
 
                 <span>
                     <label>Total</label>
-                    <h3 class="prices"> {{$bill->total}} </h3>
+                    <h3 class="prices"> {{$budget->total}} </h3>
                     <i class="fi fi-sr-usd-circle"></i>
                 </span>
             </div>
         </div>
         <div class="actions-bill">
-            <a href="{{ route('bills.export', $bill->id) }}" class="export-document" target="_blank" rel="noopener noreferrer" title="Generar PDF">
+            <a href="{{ route('budgets.export', $budget->id) }}" class="export-document" target="_blank" rel="noopener noreferrer" title="Generar PDF">
                 <i class="fi fi-sr-file-pdf"></i>
             </a>
 
-            <a href="{{ route('bills.edit', $bill->id) }}" class="edit-bill" title="Editar Factura">
+            <a href="{{ route('budgets.edit', $budget->id) }}" class="edit-bill" title="Editar cotización">
                 <i class="fi fi-sr-file-edit"></i>
             </a>
 
-            <button class="delete-bill" title="Eliminar factura" onclick="confirmTrash({{ $bill->id }}, '{{$bill->reference}}')"><i class="fi fi-sr-trash-xmark"></i></button>
+            <button class="delete-bill" title="Eliminar cotización" onclick="confirmTrash({{ $budget->id }}, '{{$budget->reference}}')"><i class="fi fi-sr-trash-xmark"></i></button>
         </div>
 
         <div class="con-items-bill-s con-items-min con-items-cli">
@@ -80,10 +74,10 @@
                 <i class="fi fi-ss-user-crown"></i>
             </div>
             <div class="body-items-sum body-clien-sum">
-                <p> {{$bill->customer->nameLast}} </p>
-                <p>NIT / CC: {{$bill->customer->cc}}</p>
-                <p>Tel: {{$bill->customer->phone_number}}</p>
-                <a href="{{ route('clientes.cliente', $bill->customer->cc) }}" class="action-user-sum">Ver Cliente</a>
+                <p> {{$budget->customer->nameLast}} </p>
+                <p>NIT / CC: {{$budget->customer->cc}}</p>
+                <p>Tel: {{$budget->customer->phone_number}}</p>
+                <a href="{{ route('clientes.cliente', $budget->customer->cc) }}" class="action-user-sum">Ver Cliente</a>
             </div>
         </div>
         <div class="con-items-bill-s con-items-min con-items-seller">
@@ -92,9 +86,9 @@
                 <i class="fi fi-sr-user-gear"></i>
             </div>
             <div class="body-items-sum body-seller-sum">
-                <img src="{{ asset("img/profileImages/" . $bill->seller->profile_photo_path) }}" alt="Profile">
-                <h2>{{$bill->seller->nameLast}}</h2>
-                <a href="{{ route('usuarios.usuario', $bill->seller->cc) }}" class="action-user-sum">Ver Más</a>
+                <img src="{{ asset("img/profileImages/" . $budget->seller->profile_photo_path) }}" alt="Profile">
+                <h2>{{$budget->seller->nameLast}}</h2>
+                <a href="{{ route('usuarios.usuario', $budget->seller->cc) }}" class="action-user-sum">Ver Más</a>
             </div>
         </div>
 
@@ -106,8 +100,8 @@
             <div class="body-items-sum body-order-sum">
                 <h2 class="hed__prod_or">Productos</h2>
 
-                @if (count($bill->products) >= 1)
-                    @foreach ($bill->products as $product)
+                @if (count($budget->products) >= 1)
+                    @foreach ($budget->products as $product)
                         <div class="product-su">
                             <img src="{{ asset('img/products/' . $product->ImagesMain) }}" alt="product">
                             <h2> {{$product->NameFor}} </h2>
@@ -121,46 +115,30 @@
                     @endforeach
                 @else
                     <div class="product_no">
-                        <h2 class="h2_not_product">Esta factura no cuenta con productos adjuntos</h2>
+                        <h2 class="h2_not_product">Esta Cotización no cuenta con productos adjuntos</h2>
                     </div>
                 @endif
 
-                <div class="con__sum__services">
-                    <h2>Servicios</h2>
-                    @if (count($bill->services) >= 1)
-                        @foreach ($bill->services as $service)
-                            <div class="serv">
-                                <h3> {{ $service->name }} </h3>
-                                <h5 class="prices prices-pro"> {{ $service->price }} </h5>
-                            </div>
-                        @endforeach
-                    @else
-                        <div class="serv serv_no">
-                            <h2>Esta factura no cuenta con servicios adjuntos</h2>
-                        </div>
-                    @endif
-                </div>
-
                 <div class="con-sum-prices">
                     <p>Subtotal</p>
-                    <h2 class="prices"> {{$bill->subtotal}} </h2>
+                    <h2 class="prices"> {{$budget->subtotal}} </h2>
 
                     <p>IVA</p>
-                    @if ($bill->IVA == 1)
-                        <h2 class="prices"> {{ $bill->subtotal * 0.19 }} </h2>
+                    @if ($budget->IVA == 1)
+                        <h2 class="prices"> {{ $budget->subtotal * 0.19 }} </h2>
                     @else
                         <h2>No aplica</h2>
                     @endif
 
                     <p>Total:</p>
-                    <h2 class="prices"> {{$bill->total}} </h2>
+                    <h2 class="prices"> {{$budget->total}} </h2>
                 </div>
             </div>
         </div>
     </div>
 
 </div>
-@include('facturas.modal')
+@include('cotizaciones.modal')
 @endsection
 @section('scripts')
 <script src="{{ asset('js/products.js') }}"></script>

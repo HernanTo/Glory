@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Editar factura | Glory Store')
+@section('title', 'Editar Cotización | Glory Store')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/bill.css') }}">
@@ -12,37 +12,27 @@
         <div class="bread-cump">
             <a href="{{ route('dashboard') }}">Home</a>
             /
-            <a href="{{ route('bills') }}">Facturas</a>
+            <a href="{{ route('budgets') }}">Cotización</a>
             /
-            <a href="{{route('bills.bill', $bill->id)}}">{{$bill->reference}}</a>
+            <a href="{{route('budgets.budget', $budget->id)}}">{{$budget->reference}}</a>
             /
             <a>Editar</a>
         </div>
-        <h2>Editar factura</h2>
+        <h2>Editar Cotización</h2>
     </div>
     <div class="con_child">
         <div class="alert alert-secondary" role="alert">
-            Puede editar el estado de la factura y si contiene o no IVA.
+            Puede editar si la cotización incluye IVA
         </div>
-        <form action="{{ route('bills.update', $bill->id) }}" method="post">
+        <form action="{{ route('budgets.update', $budget->id) }}" method="post">
             @csrf
             @method('PUT')
             <section class="sect__form__p sect__setings">
                 <article>
-                    <h4>Preferencias Factura</h4>
+                    <h4>Preferencias de la cotización</h4>
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="iva__check" name="iva__check" {{$bill->IVA ? 'checked' : ''}}>
+                        <input class="form-check-input" type="checkbox" role="switch" id="iva__check" name="iva__check" {{$budget->IVA ? 'checked' : ''}}>
                         <label class="form-check-label" for="iva">Incluir IVA</label>
-                    </div>
-                </article>
-
-                <article>
-                    <h4>Estado de la factura</h4>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="is_paid" name="is_paid" {{$bill->is_paid ? 'checked' : ''}}>
-                        <label class="form-check-label" for="is_paid">
-                          Pagada
-                        </label>
                     </div>
                 </article>
             </section>
@@ -54,7 +44,7 @@
     </div>
 
 </div>
-@include('facturas.modal')
+@include('cotizaciones.modal')
 @endsection
 @section('scripts')
 <script src="{{ asset('js/products.js') }}"></script>

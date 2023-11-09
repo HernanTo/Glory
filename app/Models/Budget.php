@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bill extends Model
+class Budget extends Model
 {
     use HasFactory;
 
@@ -13,19 +13,16 @@ class Bill extends Model
         'id_customer',
         'id_seller',
         'IVA',
-        'is_paid',
         'subtotal',
         'total',
         'is_active'
     ];
 
     public function products(){
-        return $this->belongsToMany('App\Models\Product', 'bills_has_products', 'id_bill', 'id_product')
+        return $this->belongsToMany('App\Models\Product', 'budgets_has_products', 'id_budget', 'id_product')
             ->withPivot('price', 'stock', 'discount', 'total_prices');
     }
-    public function services(){
-        return $this->hasMany('App\Models\Service', 'id_bill');
-    }
+
     public function customer(){
         return $this->hasOne('App\Models\Customer', 'id', 'id_customer');
     }
@@ -34,21 +31,14 @@ class Bill extends Model
         return $this->hasOne('App\Models\User', 'id', 'id_seller');
     }
 
-    public function getStateAttribute(){
-        if($this->is_paid){
-            return 'Pagada';
-        }else{
-            return 'Pendiente de Pago';
-        }
-    }
-
     public function getReferenceAttribute()
     {
-        return sprintf("%07s", $this->id);
+        return sprintf("%06s", $this->id);
     }
 
     public function getHaveIVAAttribute()
     {
        return $this->IVA ? 'Incluye' : 'No contiene';
     }
+
 }

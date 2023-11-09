@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Usuario | Glory Store')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/account.css') }}">
