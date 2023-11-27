@@ -35,7 +35,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image = $request->photo;
+        $imageName = '';
+
+        if($request->hasFile('photo')){
+            $imageName = time() . '.' . $image->extension();
+            $image->storeAs('/', $imageName, 'categories');
+        }
+        echo $imageName;
+
+        $category = Category::create([
+            "name" => $request->name,
+            "photo_category" => $imageName,
+            "is_active" => 1
+        ]);
+
+        return redirect()->route('settings.category');
     }
 
     /**
@@ -78,8 +93,22 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request)
     {
-        //
+        $category = Category::find($request->id);
+        if($category){
+            $category->update(['is_active' => 0]);
+        }
+
+        return redirect()->route('settings.category.des');
+    }
+
+    public function enable(Request $request){
+        $category = Category::find($request->id);
+        if($category){
+            $category->update(['is_active' => 1]);
+        }
+
+        return redirect()->route('settings.category');
     }
 }

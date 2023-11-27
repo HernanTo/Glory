@@ -42,16 +42,10 @@
             <h4>Stock no disponible</h4>
             @endif
             @if ($product->available == 0 || $product->stock > 0)
-                <span class="available">Disponibilidad Inmediata</span>
+                <span class="available">Entrega Inmediata</span>
             @endif
-            @if ($product->available == 15 && $product->stock <= 0)
-            <span class="available available__middle">Disponibilidad 15 días</span>
-            @endif
-            @if ($product->available == 30 && $product->stock <= 0)
-            <span class="available available__long">Disponibilidad 30 días</span>
-            @endif
-            @if ($product->available == 60 && $product->stock <= 0)
-            <span class="available available__long__extra">Disponibilidad 60 días</span>
+            @if ($product->available > 0 && $product->stock <= 0)
+            <span class="available">Entrega a {{$product->available}} días</span>
             @endif
 
             @if ($product->stock == 1)
@@ -75,7 +69,11 @@
     <section class="section__desc_product">
         <h5>Descripción del producto</h5>
         <div class="body__desc__product">
-            {!!  $product->description  !!}
+            @if (strlen($product->description) > 0)
+                {!!  $product->description  !!}
+            @else
+                << Sin descripción >>
+            @endif
         </div>
     </section>
     <section class="section__aditional__info">

@@ -18,11 +18,11 @@ class BillsHasProducts extends Migration
             $table->unsignedBigInteger('id_bill');
             $table->unsignedBigInteger('id_product');
 
-            $table->decimal('price');
+            $table->bigInteger('price');
             $table->bigInteger('stock');
             $table->bigInteger('discount');
 
-            $table->decimal('total_prices');
+            $table->bigInteger('total_prices');
             $table->timestamps();
         });
     }

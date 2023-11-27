@@ -45,7 +45,7 @@
                     <td> {{$product->name}} </td>
                     <td class="con-category-table">
                         @foreach ($product->categories as $category)
-                            <div class="con-category-p-t">{{$category->name}}</div>
+                            {{$category->name}} -
                         @endforeach
                     </td>
                     <td class="prices"> {{$product->price}} </td>
@@ -130,17 +130,18 @@
                             column
                                 .search( val ? '^'+val+'$' : '', true, false )
                                 .draw();
-                        } );
+                            } );
 
                         column.data().unique().sort().each( function ( d, j ) {
                             if(column.search() === '^'+d+'$'){
                                 select.append(
                                     '<option value="'+d+'" selected="selected">'
-                                    +d+
+                                    +d.value+
                                     '</option>'
                                 )
                             } else {
-                                select.append('<option value="'+d+'">'+d+'</option>')
+                                var opt = d;
+                                select.append('<option value="'+opt+'">'+opt+'</option>')
                             }
                         });
                     });

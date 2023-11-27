@@ -21,8 +21,8 @@ class CreateBillsTable extends Migration
             $table->tinyInteger('IVA');
             $table->tinyInteger('is_paid');
 
-            $table->decimal('subtotal');
-            $table->decimal('total');
+            $table->bigInteger('subtotal');
+            $table->bigInteger('total');
 
             $table->tinyInteger('is_active');
             $table->timestamps();

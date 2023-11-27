@@ -4,82 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\ImageProduct;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic;
 
 class ImageProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+    public function convertWebp(){
+        $images = ImageProduct::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        foreach($images as $img){
+            $src = public_path("img/products/$img->photo");
+            if(file_exists($src)){
+                $image = file_get_contents($src);
+                $imageConvert = ImageManagerStatic::make($image);
+                $imageName = date('mdYHis') . uniqid() . '.' . 'webp';
+                $imageConvert->save(public_path('img/products/'. $imageName));
+                $img->update(['photo' => $imageName]);
+            }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\imageProduct  $imageProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function show(imageProduct $imageProduct)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\imageProduct  $imageProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(imageProduct $imageProduct)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\imageProduct  $imageProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, imageProduct $imageProduct)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\imageProduct  $imageProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(imageProduct $imageProduct)
-    {
-        //
+        }
     }
 }

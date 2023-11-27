@@ -58,7 +58,11 @@ class Product extends Model
         }
     }
     public function getNameForAttribute(){
-        return substr($this->name, 0, 25);
+        if(strlen($this->name) >= 40){
+            return substr($this->name, 0, 40) . '...';
+        }else{
+            return $this->name;
+        }
     }
 
 }

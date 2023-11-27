@@ -33,7 +33,7 @@ class BudgetController extends Controller
      */
     public function create()
     {
-        $products = Product::where('stock', '>', 0)->get();
+        $products = Product::where('stock', '>', 0)->where('is_active', 1)->get();
         $sellersWhitPer = User::join('model_has_permissions', 'users.id', '=', 'model_has_permissions.model_id')
                                     ->join('permissions', 'model_has_permissions.permission_id', '=', 'permissions.id')
                                     ->where('permissions.name', 'create.bills')

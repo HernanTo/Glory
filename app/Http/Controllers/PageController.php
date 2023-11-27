@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a landing page
      *
      * @return \Illuminate\Http\Response
      */
@@ -17,45 +17,27 @@ class PageController extends Controller
     {
         $latestProducts = Product::where('is_active', 1)->take(5)->orderby('created_at', 'desc')->get();
 
+        $allCategories = Category::where('is_active', 1)->get();
+
         $category = Category::where('is_active', 1)->where('name', 'motor')->get()->first();
         $productsCategory = $category->products;
 
         return view('ecommerce.index', [
             'latestProducts' => $latestProducts,
             'productsCategory' => $productsCategory,
+            'allCategories' => $allCategories,
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
+     * Display one product
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->get();
+        $product = Product::where('slug', $slug)->where('is_active', 1)->get();
 
         if(count($product)<= 0){
             abort(404);
@@ -73,10 +55,24 @@ class PageController extends Controller
         ]);
     }
 
-    public function category($nameCategory){
+    // shows one category with its products
+    public function category($nameCategory, Request $request){
         $category = Category::where('is_active', 1)->where('name', $nameCategory)->get()->first();
         if($category){
             $productsCategory = $category->products;
+
+            if($request->order){
+                if($request->order == 'asc'){
+                    $productsCategory = $category->products->sortBy('price');
+                }elseif($request->order == 'desc'){
+                    $productsCategory = $category->products->sortByDesc('price');
+                }else{
+                    $productsCategory = $category->products;
+                }
+            }else{
+                $productsCategory = $category->products;
+            }
+
         }else{
             abort(404);
         }
@@ -87,43 +83,74 @@ class PageController extends Controller
         ]);
     }
 
+    // show all products
     public function catalogo(){
-        $categories = Category::where('is_active', 1)->get();
+        $Allcategories = Category::where('is_active', 1)->get();
+        $categories = $Allcategories->filter(function ($category) {
+            return $category->products->contains('is_active', true);
+        });
 
-        return view('ecommerce.catalogo', ['categories' => $categories]);
+        return view('ecommerce.catalogo', ['categories' => $categories, 'allCategories' => $Allcategories]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+
+    // Show our stores
+    public function stores(){
+        return view('ecommerce.tiendas');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    // search autocompletado
+    public function search(Request $request){
+        $term = $request->get('term');
+
+        $products = Product::where('name', 'LIKE', '%'. $term .'%')->where('is_active', 1)->take(8)->get();
+        $categories = Category::where('name', 'LIKE', '%'. $term .'%')->where('is_active', 1)->take(2)->get();
+
+        $data = [];
+        foreach($products as $product){
+            $data[] = [
+                'label' => $product->name,
+                'slug' => $product->slug,
+                'type' => 'products',
+            ];
+        }
+        foreach($categories as $category){
+            $data[] = [
+                'label' => $category->name,
+                'type' => 'categories',
+            ];
+        }
+
+        return $data;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    // searching
+    public function searchProducts(Request $request){
+        if(strlen($request->p) <= 1){
+            $products = collect();
+            $productsQ = collect();
+            $total = 0;
+        }else{
+            if($request->order){
+                if($request->order == 'asc' || $request->order == 'desc'){
+                    $products = Product::where('name', 'LIKE', '%'. $request->p .'%')
+                                        ->where('is_active', 1)
+                                        ->orderBy('price', $request->order)
+                                        ->simplePaginate(10);
+                }else{
+                    $products = Product::where('name', 'LIKE', '%'. $request->p .'%')->where('is_active', 1)->simplePaginate(10);
+                }
+            }else{
+                $products = Product::where('name', 'LIKE', '%'. $request->p .'%')->where('is_active', 1)->simplePaginate(10);
+            }
+            $productsQ = Product::where('name', 'LIKE', '%'. $request->p .'%')->where('is_active', 1)->get();
+            $total = count($productsQ);
+        }
+
+        return view('ecommerce.searching', [
+            'search' => $request->p,
+            'products' => $products,
+            'total' => $total
+        ]);
     }
 }

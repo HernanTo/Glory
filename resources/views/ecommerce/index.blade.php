@@ -54,36 +54,7 @@
     </div>
 </section>
 <div class="container_content">
-    <section class="con__categories">
-        <a href="{{ route('catalogo') }}" class="category_btn">
-            <i class="fi fi-ss-box-open-full"></i>
-            <h3>Catálogo</h3>
-        </a>
-        <a href="{{ route('category.productos', 'Caja') }}" class="category_btn">
-            <figure>
-                <img src="{{ asset('img/gearbox.png') }}" alt="" class="ico__category">
-            </figure>
-            <h3>Caja</h3>
-        </a>
-        <a href="{{ route('category.productos', 'Exteriores') }}" class="category_btn">
-            <figure>
-                <img src="{{ asset('img/car.png') }}" alt="" class="ico__category">
-            </figure>
-            <h3>Exteriores</h3>
-        </a>
-        <a href="{{ route('category.productos', 'Motor') }}" class="category_btn">
-            <figure>
-                <img src="{{ asset('img/car-engine.png') }}" alt="" class="ico__category">
-            </figure>
-            <h3>Motor</h3>
-        </a>
-        <a href="{{ route('category.productos', 'Suspension') }}" class="category_btn">
-            <figure>
-                <img src="{{ asset('img/suspension.png') }}" alt="" class="ico__category">
-            </figure>
-            <h3>Supensión</h3>
-        </a>
-    </section>
+    @include('layouts.section_category')
     <section class="con__section_prods">
         <div class="header__section__prods">
             <h2>Nuevos Productos</h2>
@@ -92,7 +63,7 @@
             @foreach ($latestProducts as $product)
                 <a href="{{route('producto.producto', $product->slug)}}" class="product">
                     <figure class="con__img_prod">
-                        <img src="{{asset('img/products/' . $product->imagesMain)}}" alt="{{$product->slug}}">
+                        <img src="{{asset('img/products/' . $product->imagesMain)}}" alt="{{$product->name}}" title="{{$product->name}}">
                     </figure>
                     <div class="info__prod">
                         <div class="con__name_prod">
@@ -100,7 +71,7 @@
                         </div>
                         <div class="con_bottom_prod">
                             <span class="prices">{{ $product->price }} </span>
-                            <button class="btn__add__car"><i class="fi fi-sr-shopping-cart-add"></i></button>
+                            <button class="btn__add__car"><i class="fi fi-sr-shopping-cart-add" aria-label="Añadir al carrito"></i></button>
                         </div>
                     </div>
                 </a>

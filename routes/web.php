@@ -6,17 +6,14 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImageProductController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Auth::routes(['login' => false]);
-
-Route::prefix('administration')->group(function () {
-    Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
-});
-
+Auth::routes();
 
 Route::get('/administration', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware('can:getInto.administration');
 
@@ -149,4 +146,36 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
     Route::get('/{slug}/p/', [PageController::class, 'show'])->name('producto.producto');
     Route::get('/{category}/c/', [PageController::class, 'category'])->name('category.productos');
     Route::get('/catalogo', [PageController::class, 'catalogo'])->name('catalogo');
+    Route::get('/tiendas', [PageController::class, 'stores'])->name('tiendas');
+    Route::get('/autocomplete', [PageController::class, 'search'])->name('search.eco');
+    Route::get('/search', [PageController::class, 'searchProducts'])->name('search.products.eco');
 // Ecommerce
+
+// Profile
+    Route::group(
+        [
+            'middleware' => ['auth', 'can:getInto.administration'],
+            'prefix' => 'administration/settings'
+        ], function (){
+            Route::get('/profile', [ProfileController::class, 'index'])
+            ->name('settings');
+
+            Route::put('/profile/update', [ProfileController::class, 'update'])
+            ->name('settings.profile.update');
+
+            Route::get('/categorias', [ProfileController::class, 'category'])
+            ->name('settings.category');
+            Route::get('/categorias/deshabilitadas', [ProfileController::class, 'categoryDes'])
+            ->name('settings.category.des');
+
+            Route::post('/categorias/store', [CategoryController::class, 'store'])
+            ->name('category.store');
+
+            Route::post('/categorias/destroy', [CategoryController::class, 'destroy'])
+            ->name('category.destroy');
+
+            Route::post('/categorias/enable', [CategoryController::class, 'enable'])
+            ->name('category.enable');
+    });
+// Settings
+

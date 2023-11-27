@@ -114,7 +114,7 @@
                 </div>
                 <div class="form-floating form__floating__glory">
                     <select name="available" id="available" class="form-select" aria-label="Floating label select example" required>
-                        @for ($i = 0; ($i * 15) <= 60; $i++)
+                        @for ($i = 0; ($i * 15) <= 90; $i++)
                             @if ($product->available == ($i * 15))
                                 @if (($i) == 0)
                                     <option value="0" selected>Inmediata</option>
@@ -123,7 +123,7 @@
                                 @endif
                             @elseif(($i) == 0)
                                 <option value="0">Inmediata</option>
-                            @elseif(($i * 15) != 45)
+                            @elseif(($i * 15) != 45 && ($i * 15) != 75)
                                 <option value="{{$i * 15}}">{{$i * 15}} días</option>
                             @endif
                         @endfor

@@ -64,10 +64,16 @@
                             <p>Cotizaciones</p>
                         </a>
                     @endcan
-                    <a href="../log/" class="items-sidebar">
+                    <a href="" class="items-sidebar">
                         <i class="fi fi-sr-time-past"></i>
                         <p>Logs</p>
                     </a>
+                    @can('see.config')
+                        <a href="{{route('settings')}}" class="items-sidebar">
+                            <i class="fi fi-sr-settings"></i>
+                            <p>Configuraciones</p>
+                        </a>
+                    @endcan
 
                 </div>
                 <div class="foo-sidebar">
@@ -111,7 +117,7 @@
                     <i class="fi fi-rr-search"></i>
                 </div>
                 <div class="btn-config">
-                    <i class="fi fi-sr-settings"></i>
+                    {{-- <i class="fi fi-sr-settings"></i> --}}
                 </div>
                 <div class="btn-logs-s" id="btn-logs-s">
                     <i class="fi fi-br-time-past"></i>
@@ -130,7 +136,7 @@
         <div class="dronwdonw-nav-user" id="drown-navbar">
             <a href="../cuenta/">Mi perfil</a>
             <div class="divider-dron"></div>
-            <a href="../cuenta/settings.php">Configuraciones</a>
+            <a href="{{ route('settings') }}">Configuraciones</a>
             <form action="{{ route('logout')  }}" method="post">
                 @csrf
                 <button type="submit">Cerrar sesión</button>
@@ -159,7 +165,7 @@
     </div>
         <!-- Scripts -->
         <script src="{{ asset('libs/jquery/jquery.js') }}" ></script>
-        <script src="{{ asset('libs/jquery/jquery-ui.js') }}" ></script>
+        <script src="{{ asset('libs/jquery-ui/jquery-ui.min.js') }}" ></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/layouts.js') }}" ></script>
     @yield('scripts')

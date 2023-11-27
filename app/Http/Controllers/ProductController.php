@@ -9,6 +9,7 @@ use App\Models\ImageProduct;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic;
 use PhpParser\Node\Stmt\Echo_;
 
 class ProductController extends Controller
@@ -64,8 +65,9 @@ class ProductController extends Controller
 
         if(is_array($request->pictures_product) && count($request->pictures_product) > 0 && $request->hasFile('pictures_product')){
             foreach($request->pictures_product as $picture){
-                $image_name = date('mdYHis') . uniqid() . '.' . $picture->extension();
-                $picture->storeAs('/', $image_name, 'products');
+                $pictureConvert = ImageManagerStatic::make($picture);
+                $image_name = date('mdYHis') . uniqid() . '.' . 'webp';
+                $pictureConvert->save(public_path('img/products/'. $image_name));
                 $image = ImageProduct::create(['photo' => $image_name]);
                 $product->images()->save($image);
             }
@@ -151,6 +153,7 @@ class ProductController extends Controller
                     if (file_exists(public_path('img/products/' . $MPhoto->photo))) {
                         unlink(public_path('img/products/' . $MPhoto->photo));
                     }
+                    $MPhoto->delete();
                 }
             }
         }
@@ -170,8 +173,9 @@ class ProductController extends Controller
         // Add New images
         if(is_array($request->pictures_product) && count($request->pictures_product) > 0 && $request->hasFile('pictures_product')){
             foreach($request->pictures_product as $picture){
-                $image_name = date('mdYHis') . uniqid() . '.' . $picture->extension();
-                $picture->storeAs('/', $image_name, 'products');
+                $pictureConvert = ImageManagerStatic::make($picture);
+                $image_name = date('mdYHis') . uniqid() . '.' . 'webp';
+                $pictureConvert->save(public_path('img/products/'. $image_name));
                 $image = ImageProduct::create(['photo' => $image_name]);
                 $product->images()->save($image);
             }

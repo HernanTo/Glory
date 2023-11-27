@@ -20,8 +20,8 @@ class CreateProductsTable extends Migration
             $table->string('slug')->unique();
 
             $table->string('name', 100);
-            $table->decimal('price');
-            $table->decimal('cost');
+            $table->bigInteger('price');
+            $table->bigInteger('cost');
             $table->longText('description')->nullable();
 
             $table->bigInteger('stock');

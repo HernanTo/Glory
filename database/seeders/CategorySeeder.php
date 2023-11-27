@@ -14,11 +14,11 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['Motor', 'Caja', 'Suspension', 'Exteriores'];
+        $categories = [['Motor', 'car-engine.png'], ['Caja', 'gearbox.png'], ['Suspension', 'suspension.png'],['Exteriores', 'car.png'], ['Accesorios', 'wheel.png']];
 
         foreach($categories as $category){
             Category::create([
-                'name' => $category,
+                'name' => $category[0],
                 'is_active' => 1]);
         }
     }

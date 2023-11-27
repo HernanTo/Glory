@@ -122,10 +122,12 @@
 .section__info__basic__product .con__h_info_product .prices{
     font-family: 'Poppins';
     font-weight: 700;
-    font-size: 20px;
+    font-size: 23px;
+    margin-left: 10px;
 }
 .con__b__info__product{
     display: grid;
+    grid-template-rows: 20px 1fr;
 }
 .con__b__info__product h4{
     font-family: 'Poppins';
@@ -134,18 +136,17 @@
     margin: 0px;
 }
 .available{
-    background: #809f39;
-    color: #274a2a;
-    padding: 5px 10px;
+    color: var(--color-primary);
+    padding: 5px 0px;
     border-radius: 12px;
     width: fit-content;
     margin-top: 5px;
     margin-bottom: 15px;
     font-family: 'Alata';
-    font-size: 14px;
+    font-size: 16px;
     height: fit-content;
 }
-.available__middle{
+/* .available__middle{
     background: var(--color-primary-op);
     color: var(--color-text);
 }
@@ -156,7 +157,7 @@
 .available__long__extra{
     background: var(--main-color);
     color: var(--color-text);
-}
+} */
 .section__desc_product{
     padding: 40px;
     border: 2px solid var(--border-color-low);

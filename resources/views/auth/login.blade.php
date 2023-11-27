@@ -44,7 +44,8 @@
             </div>
         </section>
         <article class="aside__login">
-
+            <h2>Glory Store</h2>
+            <p>Solicita tus repuestos de manera ágil y segura, y descubre precios increíbles en repuestos. Garantizamos la autenticidad y calidad de nuestros productos, brindándote solo repuestos originales.</p>
         </article>
         <footer class="footer__login">
 

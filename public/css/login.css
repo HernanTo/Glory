@@ -95,5 +95,21 @@ body{
     }
     .container__login .aside__login{
         display: grid;
+        padding: 80px 150px 80px 80px;
+        align-content: center;
+        row-gap: 30px;
+    }
+    .container__login .aside__login h2{
+        font-family: 'Alata';
+        font-weight: bold;
+        font-size: 1.8rem;
+        color: var(--iron-400);
+        margin: 0px;
+    }
+    .container__login .aside__login p{
+        margin: 0px;
+        font-family: 'Poppins';
+        font-size: 25px;
+        color: var(--iron-300);
     }
 }

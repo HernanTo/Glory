@@ -1,6 +1,8 @@
 .con__products__list{
     display: grid;
     grid-template-columns: 100%;
+    background-color: #fff;
+    border-radius: 10px;
 }
 .con__products__list .product__list{
     display: grid;
@@ -9,14 +11,13 @@
     column-gap: 10px;
     background: var(--border-color-low);;
     text-decoration: none;
-    border: 2px solid var(--iron-400);;
-    border-radius: 8px;
+    border: 2px solid var(--iron-300);
     row-gap: 5px;
 }
 .con__products__list .product__list figure{
     width: 100%;
     padding: 10px;
-    border-right: 2px solid var(--iron-400);;
+    border-right: 2px solid var(--iron-300);
     margin: 0px;
 }
 .con__products__list .product__list figure img{
@@ -33,7 +34,7 @@
 .con_info_product h3{
     font-family: 'Alata';
     margin: 0px;
-    font-size: 21px;
+    font-size: 20px;
     color: var(--iron-950);
 }
 .con_info_product h5{
@@ -53,7 +54,7 @@
         display: grid;
         grid-template-columns: 350px 1fr;
     }
-    .con__prodcuts__list{
+    .con__products__list{
         grid-column: 2/3;
     }
     .header-table{
@@ -62,5 +63,14 @@
     .products__not__found{
         grid-column: 2/3;
         grid-row: 2/3;
+    }
+    .con__filters{
+        grid-column: 1/2;
+    }
+    .pagination{
+        grid-column: 2/3;
+        display: flex;
+        padding: 40px 0px;
+        justify-content: center;
     }
 }

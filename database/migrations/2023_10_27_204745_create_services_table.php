@@ -17,7 +17,7 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_bill');
             $table->text('name');
-            $table->decimal('price');
+            $table->bigInteger('price');
             $table->timestamps();
             $table->foreign('id_bill')->references('id')->on('bills');
         });

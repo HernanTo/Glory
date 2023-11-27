@@ -1,5 +1,8 @@
 @extends('layouts.guest')
 @section('title', 'Catálogo | Glory Store')
+@section('meta_description', 'Explora nuestro amplio catálogo de repuestos. Encuentra accesorios, piezas originales, suspension para carros, exteriores y mucho más para tu vehículo')
+@section('meta_op_title', 'Catálogo | Glory Store')
+@section('meta_op_desc', 'Explora nuestro amplio catálogo de repuestos. Encuentra accesorios, piezas originales, suspension para carros, exteriores y mucho más para tu vehículo')
 
 @section('styles')
 <link rel="stylesheet" href="{{asset('libs/xZoom/xzoom.min.css')}}">
@@ -16,36 +19,7 @@
         </div>
         <h2>Catálogo</h2>
     </div>
-    <section class="con__categories">
-        <a href="{{ route('catalogo') }}" class="category_btn">
-            <i class="fi fi-ss-box-open-full"></i>
-            <h3>Catálogo</h3>
-        </a>
-        <a href="{{ route('category.productos', 'Caja') }}" class="category_btn">
-            <figure>
-                <img src="{{ asset('img/gearbox.png') }}" alt="" class="ico__category">
-            </figure>
-            <h3>Caja</h3>
-        </a>
-        <a href="{{ route('category.productos', 'Exteriores') }}" class="category_btn">
-            <figure>
-                <img src="{{ asset('img/car.png') }}" alt="" class="ico__category">
-            </figure>
-            <h3>Exteriores</h3>
-        </a>
-        <a href="{{ route('category.productos', 'Motor') }}" class="category_btn">
-            <figure>
-                <img src="{{ asset('img/car-engine.png') }}" alt="" class="ico__category">
-            </figure>
-            <h3>Motor</h3>
-        </a>
-        <a href="{{ route('category.productos', 'Suspension') }}" class="category_btn">
-            <figure>
-                <img src="{{ asset('img/suspension.png') }}" alt="" class="ico__category">
-            </figure>
-            <h3>Supensión</h3>
-        </a>
-    </section>
+    @include('layouts.section_category')
 
     @foreach ($categories as $category)
         @if(count($category->products) > 0)
@@ -56,20 +30,22 @@
                 </div>
                 <div class="con__products">
                 @foreach ($category->products as $product)
-                    <a href="{{route('producto.producto', $product->slug)}}" class="product">
-                        <figure class="con__img_prod">
-                            <img src="{{asset('img/products/' . $product->imagesMain)}}" alt="{{$product->slug}}">
-                        </figure>
-                        <div class="info__prod">
-                            <div class="con__name_prod">
-                                <h3>{{ $product->nameFor }}</h3>
+                    @if ($product->is_active)
+                        <a href="{{route('producto.producto', $product->slug)}}" class="product">
+                            <figure class="con__img_prod">
+                                <img src="{{asset('img/products/' . $product->imagesMain)}}" alt="{{$product->slug}}">
+                            </figure>
+                            <div class="info__prod">
+                                <div class="con__name_prod">
+                                    <h3>{{ $product->nameFor }}</h3>
+                                </div>
+                                <div class="con_bottom_prod">
+                                    <span class="prices">{{ $product->price }} </span>
+                                    <button class="btn__add__car"><i class="fi fi-sr-shopping-cart-add"></i></button>
+                                </div>
                             </div>
-                            <div class="con_bottom_prod">
-                                <span class="prices">{{ $product->price }} </span>
-                                <button class="btn__add__car"><i class="fi fi-sr-shopping-cart-add"></i></button>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    @endif
                 @endforeach
                 </div>
             </section>

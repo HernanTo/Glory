@@ -1,5 +1,10 @@
 @extends('layouts.guest')
 @section('title', $product->name . ' | Glory Store')
+@section('meta_description', $product->name . ', '.strip_tags($product->description))
+@section('meta_op_title', $product->name . ' | Glory Store')
+@section('meta_op_desc', $product->name . ', '.strip_tags($product->description))
+@section('meta_op_img', asset('img/products/' . $product->ImagesMain))
+
 
 @section('styles')
 <link rel="stylesheet" href="{{asset('libs/xZoom/xzoom.min.css')}}">
@@ -11,6 +16,8 @@
     <div class="header-table header__table__left">
         <div class="bread-cump">
             <a href="{{ route('home') }}">Home</a>
+            /
+            <a href="{{ route('category.productos', $product->categories->first()->name) }}">{{ $product->categories->first()->name }}</a>
             /
             <a>{{$product->name}}</a>
         </div>
@@ -40,23 +47,17 @@
             <h4>Stock no disponible</h4>
             @endif
             @if ($product->available == 0 || $product->stock > 0)
-                <span class="available">Entrega nmediata</span>
+                <span class="available">Entrega Inmediata</span>
             @endif
-            @if ($product->available == 15 && $product->stock <= 0)
-            <span class="available available__middle">Entrega a 15 días</span>
-            @endif
-            @if ($product->available == 30 && $product->stock <= 0)
-            <span class="available available__long">Entrega a 30 días</span>
-            @endif
-            @if ($product->available == 60 && $product->stock <= 0)
-            <span class="available available__long__extra">Entrega a 60 días</span>
+            @if ($product->available > 0 && $product->stock <= 0)
+            <span class="available">Entrega a {{$product->available}} días</span>
             @endif
 
             @if ($product->stock == 1)
-            <small>1 Disponible</small>
+                <small>1 Disponible</small>
             @endif
             @if ($product->stock > 1)
-            <small>{{$product->stock}} Disponibles</small>
+                <small>{{$product->stock}} Disponibles</small>
             @endif
         </div>
         <article class="con__actions_vertical">
@@ -64,44 +65,19 @@
                 <i class="fi fi-sr-shopping-cart-add"></i>
                 Añadir al carrito
             </button> --}}
-            <a href="https://api.whatsapp.com/send/?phone=573102452756&text=Quiero+realizar+una+cotizaci%C3%B3n+de+algunos+repuestos.&type=phone_number&app_absent=0" class="btn__whatsapp__pro">
+            <a href="https://wa.link/ujys6j" class="btn__whatsapp__pro">
                 Escribenos por Whatsapp
             </a>
         </article>
     </section>
-    <section class="section__desc_product">
-        <h5>Descripción del producto</h5>
-        <div class="body__desc__product">
-            {!!  $product->description  !!}
-        </div>
-    </section>
-    <section class="section__aditional__info">
-        <h5>Información Adicional</h5>
-        <table class="table__aditional__info">
-            <tr>
-                <td style="width: 130px" class="th__aditional"># de Repuesto:</td>
-                <td>{{$product->num_repuesto}}</td>
-            </tr>
-            <tr class="th__aditional">
-                <td>Barras:</td>
-                <td>{{$product->barcode}}</td>
-            </tr>
-            <tr class="th__aditional">
-                <td>Precio:</td>
-                <td class="prices">{{$product->price}}</td>
-            </tr>
-            @can('see.cost.product.dash')
-            <tr class="th__aditional">
-                <td>Costo:</td>
-                <td class="prices">{{$product->cost}}</td>
-            </tr>
-            @endcan
-            <tr class="th__aditional">
-                <td>Stock:</td>
-                <td>{{$product->stock}}</td>
-            </tr>
-        </table>
-    </section>
+    @if (strlen($product->description) > 0)
+        <section class="section__desc_product">
+            <h5>Descripción del producto</h5>
+            <div class="body__desc__product">
+                {!!  $product->description  !!}
+            </div>
+        </section>
+    @endif
     @if (count($similarProducts) > 0)
     {{-- <section class="con__section_prods con__section_prods__recomen">
         <div class="header__section__prods header__section_recomen">

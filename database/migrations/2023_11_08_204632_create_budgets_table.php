@@ -20,8 +20,8 @@ class CreateBudgetsTable extends Migration
 
             $table->tinyInteger('IVA');
 
-            $table->decimal('subtotal');
-            $table->decimal('total');
+            $table->bigInteger('subtotal');
+            $table->bigInteger('total');
 
             $table->tinyInteger('is_active');
             $table->timestamps();
