@@ -19,17 +19,17 @@
             /
             <a href="{{ route('category.productos', $product->categories->first()->name) }}">{{ $product->categories->first()->name }}</a>
             /
-            <a>{{$product->name}}</a>
+            <a  href="#">{{$product->name}}</a>
         </div>
         <h2>{{$product->name}}</h2>
     </div>
     <div class="gallery__product">
         <div class="con__main__photo xzoom-container">
-            <img class="xzoom3" src="{{ asset('img/products/' . $product->ImagesMain) }}"></a>
+            <img class="xzoom3" src="{{ asset('img/products/' . $product->ImagesMain) }}" alt="{{$product->name . ', ', strip_tags($product->description)}}"></a>
         </div>
         <div class="xzoom-thumbs">
             @foreach ($product->images as $image)
-                <a><img class="xzoom-gallery3" src="{{ asset('img/products/'.$image->photo) }}"></a>
+                <a><img class="xzoom-gallery3" src="{{ asset('img/products/'.$image->photo) }}" alt="{{$product->name . ', ', strip_tags($product->description)}}"></a>
             @endforeach
         </div>
     </div>

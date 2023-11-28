@@ -15,7 +15,7 @@
         <div class="bread-cump">
             <a href="{{ route('home') }}">Home</a>
             /
-            <a>Catálogo</a>
+            <a href="#">Catálogo</a>
         </div>
         <h2>Catálogo</h2>
     </div>
@@ -31,20 +31,7 @@
                 <div class="con__products">
                 @foreach ($category->products as $product)
                     @if ($product->is_active)
-                        <a href="{{route('producto.producto', $product->slug)}}" class="product">
-                            <figure class="con__img_prod">
-                                <img src="{{asset('img/products/' . $product->imagesMain)}}" alt="{{$product->slug}}">
-                            </figure>
-                            <div class="info__prod">
-                                <div class="con__name_prod">
-                                    <h3>{{ $product->nameFor }}</h3>
-                                </div>
-                                <div class="con_bottom_prod">
-                                    <span class="prices">{{ $product->price }} </span>
-                                    <button class="btn__add__car"><i class="fi fi-sr-shopping-cart-add"></i></button>
-                                </div>
-                            </div>
-                        </a>
+                        @include('layouts.product-basic')
                     @endif
                 @endforeach
                 </div>

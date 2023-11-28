@@ -429,6 +429,7 @@ a.ui-button:active,
 #card__store .card-title{
     font-family: 'Poppins';
     font-weight: bold;
+    font-size: 18px;
 }
 .container__cards{
     display: grid;

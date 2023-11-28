@@ -179,3 +179,7 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
     });
 // Settings
 
+// // temp
+// Route::get('/products/img', [ImageProductController::class, 'convertWebp'])
+// ->name('category.enable');
+// // temp
