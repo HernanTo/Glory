@@ -1,8 +1,8 @@
 @extends('layouts.guest')
 @section('title', $product->name . ' | Glory Store')
-@section('meta_description', $product->name . ', '.strip_tags($product->description))
+@section('meta_description', "Compre " . $product->name . ", Conozca nuestros increibles precios. Repuestos originales y de calidad.")
 @section('meta_op_title', $product->name . ' | Glory Store')
-@section('meta_op_desc', $product->name . ', '.strip_tags($product->description))
+@section('meta_op_desc', "Compre " . $product->name . ", Conozca nuestros increibles precios. Repuestos originales y de calidad.")
 @section('meta_op_img', asset('img/products/' . $product->ImagesMain))
 
 
