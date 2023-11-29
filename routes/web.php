@@ -9,6 +9,7 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageProductController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -178,7 +179,12 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
     });
 // Settings
 
-// // temp
-// Route::get('/products/img', [ImageProductController::class, 'convertWebp'])
-// ->name('category.enable');
-// // temp
+// User ecommerce
+    Route::group(
+        [
+            'prefix' => 'profile',
+            'middleware' => ['auth', 'can:getIntoViews.User', 'verified']
+        ], function (){
+            Route::get('/', [ProfileController::class, 'profile'])->name('profile');
+    });
+// User ecommerce

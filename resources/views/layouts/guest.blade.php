@@ -44,10 +44,18 @@
                 </form>
             </div>
             <div class="nav__car">
-                {{-- <i class="fi fi-rr-shopping-cart"></i> --}}
+                <i class="fi fi-rr-shopping-cart"></i>
             </div>
             <div class="con__btn__login">
-                {{-- <a href="">Inicie sesión</a> --}}
+                @if (auth()->user())
+                    <form action="{{ route('logout')  }}" method="post">
+                        @csrf
+                        <button type="submit">Cerrar sesión</button>
+                    </form>
+                @else
+                    <a href="{{route('login')}}">Inicie sesión</a>
+
+                @endif
             </div>
             <div class="con__link__bot">
                 <a href="{{ route('tiendas') }}">Nuestra tienda</a>
@@ -69,7 +77,6 @@
         <i class="fi fi-brands-whatsapp"></i>
         <h3>Solicita tu repuesto</h3>
     </a>
-
     <footer class="footer">
         <div class="container__footer">
             <a class="con__logo_footer" href="{{ route('home') }}">

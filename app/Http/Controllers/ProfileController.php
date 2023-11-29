@@ -34,24 +34,15 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(User $profile)
+    public function profile()
     {
-        //
+        $user = auth()->user();
+        return view('ecommerce.profile.index', ['user' => $user]);
     }
 
     /**
@@ -109,16 +100,5 @@ class ProfileController extends Controller
         ]);
 
         return redirect()->route('settings');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $profile)
-    {
-        //
     }
 }

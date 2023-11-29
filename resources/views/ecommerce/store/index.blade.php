@@ -55,14 +55,14 @@
     </div>
 </section>
 <div class="container_content">
-    @include('layouts.section_category')
+    @include('layouts.components.section_category')
     <section class="con__section_prods">
         <div class="header__section__prods">
             <h2>Nuevos Productos</h2>
         </div>
         <div class="con__products">
             @foreach ($latestProducts as $product)
-                @include('layouts.product-basic')
+                @include('layouts.components.product-basic')
             @endforeach
         </div>
     </section>

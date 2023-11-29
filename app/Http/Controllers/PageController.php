@@ -22,7 +22,7 @@ class PageController extends Controller
         $category = Category::where('is_active', 1)->where('name', 'motor')->get()->first();
         $productsCategory = $category->products;
 
-        return view('ecommerce.index', [
+        return view('ecommerce.store.index', [
             'latestProducts' => $latestProducts,
             'productsCategory' => $productsCategory,
             'allCategories' => $allCategories,
@@ -49,7 +49,7 @@ class PageController extends Controller
         $category = Category::where('is_active', 1)->where('name', $categoryProduct->name)->get()->first();
         $similarProducts = $category->products->where('slug', '!=', $slug)->take(3);
 
-        return view('ecommerce.producto', [
+        return view('ecommerce.store.producto', [
             'product' => $product,
             'similarProducts' => $similarProducts,
         ]);
@@ -77,7 +77,7 @@ class PageController extends Controller
             abort(404);
         }
 
-        return view('ecommerce.categoria', [
+        return view('ecommerce.store.categoria', [
             'productsCategory' => $productsCategory,
             'category' => $category,
         ]);
@@ -90,13 +90,13 @@ class PageController extends Controller
             return $category->products->contains('is_active', true);
         });
 
-        return view('ecommerce.catalogo', ['categories' => $categories, 'allCategories' => $Allcategories]);
+        return view('ecommerce.store.catalogo', ['categories' => $categories, 'allCategories' => $Allcategories]);
     }
 
 
     // Show our stores
     public function stores(){
-        return view('ecommerce.tiendas');
+        return view('ecommerce.store.tiendas');
     }
 
     // search autocompletado
@@ -147,7 +147,7 @@ class PageController extends Controller
             $total = count($productsQ);
         }
 
-        return view('ecommerce.searching', [
+        return view('ecommerce.store.searching', [
             'search' => $request->p,
             'products' => $products,
             'total' => $total

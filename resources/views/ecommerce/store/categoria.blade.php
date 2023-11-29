@@ -50,7 +50,7 @@
             <div class="con__products">
                 @foreach ($productsCategory as $product)
                     @if ($product->is_active)
-                        @include('layouts.product-basic')
+                        @include('layouts.components.product-basic')
                     @endif
                 @endforeach
             </div>

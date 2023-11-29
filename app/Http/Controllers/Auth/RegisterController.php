@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::VERIFICATION;
 
     /**
      * Create a new controller instance.
@@ -66,7 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'cc' => $data['cc'],
             'ft_name' => $data['ft_name'],
             'sc_name' => $data['sc_name'],
@@ -80,5 +80,9 @@ class RegisterController extends Controller
             'profile_photo_path' => 'default.png',
             'is_active' => 1,
         ]);
+
+        $user->assignRole('Cliente Web');
+
+        return $user;
     }
 }

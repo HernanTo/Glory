@@ -15,8 +15,7 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $administrador = Role::find(1);
-        $gerente = Role::find(2);
+        $clienteWeb = Role::find(3);
 
     //     $administrador = Role::create(['name' => 'Administrador']);
     //     $gerente = Role::create(['name' => 'Gerente']);
@@ -27,6 +26,7 @@ class RoleSeeder extends Seeder
 
     // // Permission Global
     //     Permission::create(['name' => 'getInto.administration'])->syncRoles([$administrador, $gerente, $servicios, $vendedor]);
+        Permission::create(['name' => 'getIntoViews.User'])->syncRoles([$clienteWeb]);
     // // Permission Global
 
     // // Permission Users

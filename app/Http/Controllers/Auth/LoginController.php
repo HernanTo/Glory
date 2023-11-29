@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'dashboard';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -53,6 +53,8 @@ class LoginController extends Controller
 
             if ($user->can('getInto.administration')) {
                 return redirect()->route('dashboard');
+            }elseif($user->can('getIntoViews.User')){
+                return redirect()->route('profile');
             } else {
                 auth()->logout();
                 return redirect()->route('login')->with('error', 'No tienes permisos para acceder.');

@@ -19,7 +19,7 @@
         </div>
         <h2>Catálogo</h2>
     </div>
-    @include('layouts.section_category')
+    @include('layouts.components.section_category')
 
     @foreach ($categories as $category)
         @if(count($category->products) > 0)
@@ -31,7 +31,7 @@
                 <div class="con__products">
                 @foreach ($category->products as $product)
                     @if ($product->is_active)
-                        @include('layouts.product-basic')
+                        @include('layouts.components.product-basic')
                     @endif
                 @endforeach
                 </div>

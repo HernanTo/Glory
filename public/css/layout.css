@@ -448,6 +448,9 @@ a.ui-button:active,
     margin: 0px;
     font-family: 'Nunito Sans';
 }
+.d-block{
+    border-radius: 0px 0px 12px 12px !important;
+}
 
 
 @media (min-width: 720px){
@@ -508,9 +511,10 @@ a.ui-button:active,
         align-items: center;
         justify-content: center;
         text-decoration: none;
-        background: var(--color-primary-op);
-        color: white;
-        font-family: 'Alata';
+        background: var(--iron-300);
+        color: var(--iron-950);
+        font-family: 'Poppins';
+        font-weight: 700;
         border-radius: 8px;
     }
 /* Navbar */
