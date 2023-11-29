@@ -24,6 +24,25 @@ body{
     justify-items: center;
     margin-bottom: 20px;
 }
+.header__con__register{
+    display: grid;
+    grid-template-columns: 100%;
+    justify-items: center;
+}
+.header__con__register .con__logo{
+    display: grid;
+    justify-content: center;
+    align-items: flex-end;
+    padding-top: 20px;
+    width: 200px;
+}
+.header__con__register .con__logo img{
+    width: 200px;
+    margin-bottom: 15px;
+    user-select: none;
+    pointer-events: none;
+    object-fit: cover;
+}
 .header__con__login .header__logo__login{
     width: 200px;
     margin-bottom: 15px;
@@ -31,10 +50,10 @@ body{
     pointer-events: none;
     object-fit: cover;
 }
-.con__login{
+.con__login, .con__register{
     padding: 30px 50px 20px 50px;
 }
-.con__login h2{
+.con__login h2, .con__register h2{
     font-family: 'Alata';
     font-weight: bold;
     color: black;
@@ -50,10 +69,35 @@ body{
 .con__login form .form__floating__glory{
     width: 100%;
 }
-.con__login form .con_btn{
+.con__login form .con_btn, .con__register form .con_btn{
     display: grid;
     justify-content: center;
     grid-template-columns: 140px;
+}
+.con__alert{
+    display: grid;
+    justify-content: center;
+    padding-top: 15px;
+}
+.con__alert p{
+    font-size: 15px;
+    font-family: 'Nunito Sans';
+    color: var(--iron-900);
+}
+.con__alert p a{
+    color: var(--iron-950);
+    text-decoration: none;
+}
+
+.con__register form{
+    display: grid;
+    row-gap: 10px;
+    padding-top: 20px;
+}
+.inpts__groups{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
 }
 .btn__login{
     height: 45px;
@@ -82,6 +126,30 @@ body{
     text-decoration: none;
     font-weight: 600;
 }
+
+.form__sect{
+    padding: 0px 10px;
+    display: grid;
+    row-gap: 20px;
+}
+.form__group_glory label{
+    font-family: 'Nunito Sans';
+    font-size: 16px;
+}
+.form__group_glory input{
+    font-family: 'Poppins';
+    font-size: 15px;
+    height: 50px;
+}
+.form__group_glory small{
+    font-family: 'Alata';
+}
+.form__group_glory label span {
+    font-weight: bold;
+    color: var(--color-gray-op-os);
+    font-style: italic;
+}
+
 @media(min-width: 990px){
     .container__login .footer__login{
         display: none;
@@ -89,6 +157,18 @@ body{
     .container__login{
         grid-template-columns: 1fr 60%;
         grid-template-rows: 1fr;
+    }
+    .container__register{
+        grid-template-columns: 45% 1fr;
+        position: relative;
+    }
+    .container__register .aside__login{
+        position: fixed;
+        width: 45%;
+        height: 100vh;
+    }
+    .con__register{
+        grid-column: 2/3;
     }
     .container__login .con__login{
         padding-top: 80px;

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/administration', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware('can:getInto.administration');
 
@@ -141,7 +141,6 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
 // Cotizaciones
 
 // Ecommerce
-    Route::get('/home', [PageController::class, 'index']);
     Route::get('/', [PageController::class, 'index'])->name('home');
     Route::get('/{slug}/p/', [PageController::class, 'show'])->name('producto.producto');
     Route::get('/{category}/c/', [PageController::class, 'category'])->name('category.productos');

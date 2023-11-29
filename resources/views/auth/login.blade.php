@@ -1,4 +1,8 @@
 @extends('layouts.template')
+@section('title', 'Inicie sesión | Glory Store')
+@section('meta_description',  "Inicia sesión de forma segura en Glory Store. Accede a tu cuenta para solicitar repuestos de manera ágil y descubre precios increíbles en piezas originales.")
+@section('meta_op_title', 'Inicie sesión | Glory Store')
+@section('meta_op_desc', "Inicia sesión de forma segura en Glory Store. Accede a tu cuenta para solicitar repuestos de manera ágil y descubre precios increíbles en piezas originales.")
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
@@ -8,7 +12,7 @@
     <div class="container__login">
         <section class="con__login">
             <div class="header__con__login">
-                <a href="">
+                <a href="{{route('home')}}">
                     <img src="{{ asset('img/logoc.svg') }}" alt="Glory Store" class="header__logo__login">
                 </a>
                 <h2>Iniciar sesión</h2>
@@ -23,12 +27,12 @@
             <form action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="form-floating form__floating__glory">
-                    <input type="number" class="form-control" id="floatingPassword" placeholder="Identificación" name="ide">
-                    <label for="floatingPassword">Identificación</label>
+                    <input type="number" class="form-control" id="ide" placeholder="Identificación" name="ide">
+                    <label for="ide">Identificación</label>
                 </div>
                 <div class="form-floating form__floating__glory">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
-                    <label for="floatingPassword">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                    <label for="password">Password</label>
                 </div>
                 <a href="{{ route('password.request') }}" class="link__forg">¿Ólvido su contraseña?</a>
                 <div class="con_btn">
