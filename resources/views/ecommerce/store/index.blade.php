@@ -82,19 +82,19 @@
 <section class="container__benefits">
     <span>
         <figure>
-            <img src="{{asset('img/original.webp')}}" alt="">
+            <img src="{{asset('img/original.webp')}}" alt="Repuestos originales" title="Repuestos originales">
         </figure>
         <p>Repuestos originales</p>
     </span>
     <span>
         <figure>
-            <img src="{{asset('img/badge.webp')}}" alt="">
+            <img src="{{asset('img/badge.webp')}}" alt="Garantía a los repuestos" title="Garantía">
         </figure>
         <p>Garantía</p>
     </span>
     <span>
         <figure>
-            <img src="{{asset('img/protection.webp')}}" alt="">
+            <img src="{{asset('img/protection.webp')}}" alt="Calidad garantizada" title="Calidad garantizada">
         </figure>
         <p>Calidad garantizada</p>
     </span>
