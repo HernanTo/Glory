@@ -60,6 +60,49 @@
                 </section>
             </div>
         </form>
+
+        <div class="con__head_sect">
+            <h2>Cambiar contraseña</h2>
+        </div>
+        @if (auth()->user()->pass_change == 0)
+            <div class="alert alert-warning" role="alert">
+                <h4 class="alert-heading">¡Debe cambiar su contraseña!</h4>
+            </div>
+        @endif
+        <form action="{{ route('profile.password') }}" method="post" id="form-change-password">
+            @method('PUT')
+            @csrf
+            <section class="group__password">
+                <div class="form-group form__group_glory">
+                    <label for="password_currently">Contraseña Actual</label>
+                    <input type="password" class="form-control shadow-none" id="password_currently" name="password_currently" aria-describedby="Contraseña actual" placeholder="Contraseña actual" value="{{ old('password_currently') }}">
+                    <div class="invalid-feedback" id="current-pasw-inv">Ingrese una contraseña válida</div>
+                    @if($errors->any())
+                        <div class="text-danger">{{ $errors->first() }}</div>
+                    @endif
+                </div>
+                <div class="form-group form__group_glory">
+                    <label for="new_password">Nueva contraseña</label>
+                    <input type="password" class="form-control shadow-none" id="new_password" name="new_password" aria-describedby="Nueva contraseña" placeholder="Nueva contraseña" value="{{ old('new_password') }}">
+                    <div class="invalid-feedback" id="new-pass-chang">Contraseña no válida, asegurese de que la nueva contraseña cumpla con los siguientes requisitos: mínimo 8 caracteres, al menos un número y una letra mayúscula.</div>
+                    @if($errors->has('new_password'))
+                        <div class="text-danger">{{ $errors->first('new_password') }}</div>
+                    @endif
+                </div>
+                <div class="form-group form__group_glory">
+                    <label for="confirm_new_password">Confirmar nueva contraseña</label>
+                    <input type="password" class="form-control shadow-none" id="confirm_new_password" name="confirm_new_password" aria-describedby="Confirmar nueva contraseña" placeholder="Confirmar nueva contraseña" value="{{ old('confirm_new_password') }}">
+                    <div class="invalid-feedback">Las contraseñas no coinciden. Por favor, inténtalo de nuevo.</div>
+                    @if($errors->has('confirm_new_password'))
+                        <div class="text-danger">{{ $errors->first('confirm_new_password') }}</div>
+                    @endif
+                </div>
+            </section>
+
+            <section class="con-sub-edi-p">
+                <input type="button" value="Actualizar datos" class="btn btn__subm" id="btn-passw">
+            </section>
+        </form>
     </div>
 </div>
 
@@ -71,4 +114,5 @@
 </script>
 <script src="{{ asset('js/editUser.js') }}"></script>
 <script src="{{ asset('js/user.js') }}"></script>
+<script src="{{asset('js/password.js')}}"></script>
 @endsection

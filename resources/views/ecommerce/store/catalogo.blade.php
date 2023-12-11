@@ -28,12 +28,20 @@
                     <h2>{{$category->name}}</h2>
                     <a href="{{ route('category.productos', $category->name) }}">Ver todos</a>
                 </div>
-                <div class="con__products">
-                @foreach ($category->products as $product)
-                    @if ($product->is_active)
-                        @include('layouts.components.product-basic')
-                    @endif
-                @endforeach
+                <div class="slider__divs slider__divs__products">
+                    <div class="btn__actions__band span__left">
+                        <i class="fi fi-br-angle-left"></i>
+                    </div>
+                    <div class="con__products con__products__band">
+                        @foreach ($category->products as $product)
+                            @if ($product->is_active)
+                                @include('layouts.components.product-basic')
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="btn__actions__band span__right">
+                        <i class="fi fi-br-angle-right"></i>
+                    </div>
                 </div>
             </section>
         @endif
@@ -42,4 +50,6 @@
 @endsection
 @section('scripts')
 <script src="{{asset('js/products.js')}}"></script>
+<script src="{{asset('js/categories.js')}}"></script>
+<script src="{{asset('js/bandProducs.js')}}"></script>
 @endsection

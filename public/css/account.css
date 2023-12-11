@@ -247,7 +247,7 @@
     grid-template-columns: 100%;
     margin-top: 20px;
 }
-.con-detail-us-f .con-sub-edi-p, #form-change-password .con-sub-edi-p, .con-sub-edi-p{
+.con-detail-us-f .con-sub-edi-p, .con-sub-edi-p{
     display: grid;
     grid-template-columns: 190px;
     justify-content: center;
@@ -295,25 +295,6 @@
     text-decoration: none;
     font-weight: bold;
     border-radius: 12px;
-}
-#form-change-password{
-   display: grid;
-   row-gap: 20px;
-}
-#form-change-password section .form-control{
-    height: 45px;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    padding-left: 15px;
-    margin-bottom: 15px;
-    background-color: #5057653a;
-    font-family: 'Nunito Sans';
-}
-#form-change-password section label{
-    font-family: 'Poppins';
-    font-weight: 550;
-    margin-bottom: 15px;
 }
 .sec__rol{
     grid-template-columns: 62px 124px;
@@ -384,11 +365,6 @@
         display: grid;
         row-gap: 10px;
     }
-    #form-change-password{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: 20px;
-    }
     .all-col-edit-ps{
         grid-column: 1/3;
     }
@@ -430,11 +406,6 @@
         row-gap: 10px;
         text-align: center;
         justify-content: flex-end;
-    }
-    #form-change-password{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        column-gap: 20px;
     }
     .all-col-edit-ps{
         grid-column: 1/2;

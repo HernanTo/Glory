@@ -149,6 +149,7 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
     Route::get('/tiendas', [PageController::class, 'stores'])->name('tiendas');
     Route::get('/autocomplete', [PageController::class, 'search'])->name('search.eco');
     Route::get('/search', [PageController::class, 'searchProducts'])->name('search.products.eco');
+    Route::get('/profileGeneral', [PageController::class, 'profile'])->name('profileGeneral');
 // Ecommerce
 
 // Profile
@@ -186,5 +187,11 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
             'middleware' => ['auth', 'can:getIntoViews.User', 'verified']
         ], function (){
             Route::get('/', [ProfileController::class, 'profile'])->name('profile');
+            Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+            Route::put('/update', [ProfileController::class, 'update'])->name('profile.update');
     });
 // User ecommerce
+
+// Password
+    Route::put('/password/update', [ProfileController::class, 'updatePassword'])->name('profile.password')->middleware('auth');
+// Password

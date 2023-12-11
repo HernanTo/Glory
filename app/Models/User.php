@@ -79,7 +79,16 @@ class User extends Authenticatable implements MustVerifyEmail
             return $this->profile_photo_path;
         }
     }
+    public function getAddressCustomerAttribute()
+    {
+        if($this->address == null){
+            return 'No registrada';
+        }else{
+            return $this->address;
+        }
+    }
     public function bill(){
         return $this->belongsTo('App\Models\bill');
     }
+
 }

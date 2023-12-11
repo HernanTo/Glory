@@ -153,6 +153,27 @@
 .con__two__sub__form{
     padding: 15px 0px;
 }
+.group__password{
+    display: grid;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: grid;
+}
+.group__password .form__group_glory input{
+    height: 50px;
+}
+.group__password .form__group_glory label{
+    font-family: 'Poppins';
+    font-weight: 550;
+    margin-bottom: 15px;
+}
+.btn-disabled{
+    background: transparent !important;
+    border: 2px solid #595959 !important;
+    color: #595959 !important;
+    opacity: 0.4;
+    cursor: default !important;
+}
 @media(min-width:1000px){
     .con__settings{
         width: 100%;
@@ -171,5 +192,10 @@
     }
     .asidebar{
         grid-row: 2/3;
+    }
+    .group__password{
+        grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+        column-gap: 10px;
+        justify-content: center;
     }
 }

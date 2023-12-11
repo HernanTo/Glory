@@ -15,7 +15,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $latestProducts = Product::where('is_active', 1)->take(5)->orderby('created_at', 'desc')->get();
+        $latestProducts = Product::where('is_active', 1)->take(10)->orderby('created_at', 'desc')->get();
 
         $allCategories = Category::where('is_active', 1)->get();
 
@@ -152,5 +152,15 @@ class PageController extends Controller
             'products' => $products,
             'total' => $total
         ]);
+    }
+
+
+    public function profile(){
+        if(auth()->user()->can('getInto.administration')){
+            return redirect()->route('settings');
+
+        }elseif(auth()->user()->can('getIntoViews.User')){
+            return redirect()->route('profile');
+        }
     }
 }

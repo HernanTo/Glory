@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\changePasswordRequest;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -42,7 +44,12 @@ class ProfileController extends Controller
     public function profile()
     {
         $user = auth()->user();
-        return view('ecommerce.profile.index', ['user' => $user]);
+        return view('ecommerce.profile.index', ['profile' => $user]);
+    }
+
+    public function edit(){
+        $user = auth()->user();
+        return view('ecommerce.profile.edit', ['profile' => $user]);
     }
 
     /**
@@ -56,6 +63,13 @@ class ProfileController extends Controller
     {
         $profile = User::find(auth()->user()->id);
 
+        if(auth()->user()->can('getInto.administration')){
+            $redirect = redirect()->route('settings');
+
+        }elseif(auth()->user()->can('getIntoViews.User')){
+            $redirect = redirect()->route('profile.edit');
+        }
+
         $rules = [
             'ft_name' => 'required|string',
             'imgeProfile' => 'mimes:jpeg,png,jpg|max:5120',
@@ -64,9 +78,7 @@ class ProfileController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            return redirect()->route('settings')
-            ->withErrors($validator)
-            ->withInput();
+            return $redirect->withErrors($validator)->withInput();
         }
 
         $deleteImages = true;
@@ -99,6 +111,27 @@ class ProfileController extends Controller
             'profile_photo_path' => $image_name
         ]);
 
-        return redirect()->route('settings');
+        return $redirect;
+    }
+
+    public function updatePassword(changePasswordRequest $request){
+        $user = User::find(auth()->user()->id);
+        if(auth()->user()->can('getInto.administration')){
+            $redirect = redirect()->route('settings');
+
+        }elseif(auth()->user()->can('getIntoViews.User')){
+            $redirect = redirect()->route('profile.edit');
+        }
+
+        if(Hash::check($request->password_currently, $user->password)){
+            $user->update([
+                'password' => Hash::make($request->new_password),
+                'pass_change' => 1,
+            ]);
+            return $redirect;
+
+        }else{
+            return back()->withErrors(['msg' => 'La contraseña ingresada, no coincide con la registrada']);
+        }
     }
 }

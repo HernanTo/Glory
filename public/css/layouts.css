@@ -848,7 +848,9 @@ body{
     height: 100%;
 }
 .con__two__sub__form .btn__subm:hover, .btn__subm:hover{
-    animation:pulsate-fwd .5s ease-in-out infinite both
+    animation:pulsate-fwd .5s ease-in-out infinite both;
+    background: var(--color-primary-op);
+    color: var(--color-text);
 }
 .con__two__sub__form .btn__back{
     background-color: var(--color-gray-op-os);
