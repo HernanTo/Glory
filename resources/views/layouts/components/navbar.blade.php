@@ -20,6 +20,7 @@
             <a href="{{ route('category.productos', 'Caja') }}">Caja</a>
             <a href="{{ route('category.productos', 'Suspensión') }}">Suspensión</a>
             <a href="{{ route('category.productos', 'Exteriores') }}">Exteriores</a>
+            <a href="{{ route('blog') }}">Blog</a>
             <a href="#">Ayuda</a>
             <div class="space"></div>
             @if (auth()->user())

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
@@ -141,6 +142,40 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
     });
 // Cotizaciones
 
+// Blogs Administration
+Route::group(
+    [
+        'middleware' => ['auth', 'can:see.blog.administration'],
+        'prefix' => 'administration/blog'
+    ], function (){
+        Route::get('/', [BlogController::class, 'index'])
+                ->name('blog.administration');
+        Route::get('/create', [BlogController::class, 'create'])
+                ->name('blog.administration.create')
+                ->middleware('can:create.blog.administration');
+        Route::post('/store', [BlogController::class, 'store'])
+                ->name('blog.administration.store')
+                ->middleware('can:create.blog.administration');
+
+        Route::get('/{slug}', [BlogController::class, 'show'])
+        ->name('blog.administration.show')
+        ->middleware('can:see.blog.administration');
+
+        Route::get('/{slug}/edit', [BlogController::class, 'edit'])
+        ->name('blog.administration.edit')
+        ->middleware('can:update.blog.administration');
+
+
+        Route::put('/{slug}/update', [BlogController::class, 'update'])
+        ->name('blog.administration.update')
+        ->middleware('can:update.blog.administration');
+
+        Route::post('/destroy', [BlogController::class, 'destroy'])
+        ->name('blog.administration.destroy')
+        ->middleware('can:destroy.blog.administration');
+});
+// Blogs Administration
+
 // Ecommerce
     Route::get('/', [PageController::class, 'index'])->name('home');
     Route::get('/{slug}/p/', [PageController::class, 'show'])->name('producto.producto');
@@ -150,6 +185,7 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
     Route::get('/autocomplete', [PageController::class, 'search'])->name('search.eco');
     Route::get('/search', [PageController::class, 'searchProducts'])->name('search.products.eco');
     Route::get('/profileGeneral', [PageController::class, 'profile'])->name('profileGeneral');
+    Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 // Ecommerce
 
 // Profile

@@ -179,7 +179,6 @@
                 $('#err_img_prod').modal('show');
                 filesInput.value = '';
             }
-        }
-        )
+        });
     </script>
 @endsection

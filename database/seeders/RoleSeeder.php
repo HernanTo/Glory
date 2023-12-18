@@ -15,7 +15,8 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $clienteWeb = Role::find(3);
+        $administrador = Role::find(1);
+        $gerente = Role::find(2);
 
     //     $administrador = Role::create(['name' => 'Administrador']);
     //     $gerente = Role::create(['name' => 'Gerente']);
@@ -26,7 +27,7 @@ class RoleSeeder extends Seeder
 
     // // Permission Global
     //     Permission::create(['name' => 'getInto.administration'])->syncRoles([$administrador, $gerente, $servicios, $vendedor]);
-        Permission::create(['name' => 'getIntoViews.User'])->syncRoles([$clienteWeb]);
+    //     Permission::create(['name' => 'getIntoViews.User'])->syncRoles([$clienteWeb]);
     // // Permission Global
 
     // // Permission Users
@@ -83,6 +84,13 @@ class RoleSeeder extends Seeder
         // Permission::create(['name' => 'config.category'])->syncRoles([$administrador, $gerente]);
         // Permission::create(['name' => 'config.users'])->syncRoles([$administrador, $gerente]);
         // Permission::create(['name' => 'config.roles'])->syncRoles([$administrador, $gerente]);
-    // Permission config
+        // Permission config
+
+    // Permission Blog
+        Permission::create(['name' => 'see.blog.administration'])->syncRoles([$administrador, $gerente]);
+        Permission::create(['name' => 'create.blog.administration'])->syncRoles([$administrador, $gerente]);
+        Permission::create(['name' => 'update.blog.administration'])->syncRoles([$administrador, $gerente]);
+        Permission::create(['name' => 'destroy.blog.administration'])->syncRoles([$administrador, $gerente]);
+    // Permission Blog
 }
 }
