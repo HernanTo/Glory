@@ -8,7 +8,9 @@
         </div>
         <div class="con_bottom_prod">
             <span class="prices" aria-label="Precio en Pesos Colombianos">{{ $product->price }}</span>
-            <button class="btn__add__car" aria-label="Añadir al carrito"><i class="fi fi-sr-shopping-cart-add"></i></button>
+            <form action="" method="post" class="form__cart">
+                <button class="btn__add__car" aria-label="Añadir al carrito" title="Añadir al carrito"><i class="fi fi-sr-shopping-cart-add"></i></button>
+            </form>
         </div>
     </div>
 </a>

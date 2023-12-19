@@ -53,7 +53,7 @@
         </section>
         <section class="sect__footer sect__footer__map">
             <h3>UBICACIÓN</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.427772636579!2d-74.12754092520832!3d4.695499295279495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9ca79a34b449%3A0x81f72add47656b75!2sCl%2064%20%23103a-33%2C%20Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1698737749330!5m2!1ses!2sco" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación del Taller Glory Store"></iframe>
+                {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.427772636579!2d-74.12754092520832!3d4.695499295279495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9ca79a34b449%3A0x81f72add47656b75!2sCl%2064%20%23103a-33%2C%20Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1698737749330!5m2!1ses!2sco" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación del Taller Glory Store"></iframe> --}}
         </section>
     </div>
 </footer>

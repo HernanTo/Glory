@@ -74,7 +74,6 @@
         </div>
     </section>
     @include('layouts.components.section_category')
-
 </div>
 @endsection
 
@@ -104,6 +103,49 @@
         </figure>
         <p>Pagos seguros</p>
     </span>
+</section>
+<section class="con__section_prods section__width">
+    <div class="header__section__prods">
+        <h2>Te podría interesar</h2>
+    </div>
+    <div class="slider__divs slider__divs__products">
+        <div class="btn__actions__band span__left" id="leftButtonP">
+            <i class="fi fi-br-angle-left"></i>
+        </div>
+        <div class="con__products con__products__band">
+            @foreach ($productsRandom as $product)
+                @include('layouts.components.product-band')
+            @endforeach
+        </div>
+        <div class="btn__actions__band span__right" id="rightButtonP">
+            <i class="fi fi-br-angle-right"></i>
+        </div>
+    </div>
+</section>
+<section class="section__width section__posts">
+    <article class="con__articles">
+        <div class="con_left">
+            <video autoplay loop muted>
+                <source src="{{asset('videos/glory.mp4')}}" type="video/mp4">
+            </video>
+        </div>
+        <div class="con_right">
+            <div class="header__card">
+                <h2>Articulos</h2>
+                <small>Articulos recientes</small>
+                <a href="">Ver todos</a>
+            </div>
+            <div class="body__card">
+                @foreach ($posts as $post)
+                    <div class="post__rec">
+                        <img src="{{asset('img/blog/' . $post->path)}}" alt="{{$post->title}}">
+                        <h3>{{$post->title}}</h3>
+                        <a href="" class="btn__post">Ver más</a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </article>
 </section>
 @endsection
 

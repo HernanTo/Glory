@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageProductController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
@@ -143,38 +144,45 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
 // Cotizaciones
 
 // Blogs Administration
-Route::group(
-    [
-        'middleware' => ['auth', 'can:see.blog.administration'],
-        'prefix' => 'administration/blog'
-    ], function (){
-        Route::get('/', [BlogController::class, 'index'])
-                ->name('blog.administration');
-        Route::get('/create', [BlogController::class, 'create'])
-                ->name('blog.administration.create')
-                ->middleware('can:create.blog.administration');
-        Route::post('/store', [BlogController::class, 'store'])
-                ->name('blog.administration.store')
-                ->middleware('can:create.blog.administration');
+    Route::group(
+        [
+            'middleware' => ['auth', 'can:see.blog.administration'],
+            'prefix' => 'administration/blog'
+        ], function (){
+            Route::get('/', [BlogController::class, 'index'])
+                    ->name('blog.administration');
+            Route::get('/create', [BlogController::class, 'create'])
+                    ->name('blog.administration.create')
+                    ->middleware('can:create.blog.administration');
+            Route::post('/store', [BlogController::class, 'store'])
+                    ->name('blog.administration.store')
+                    ->middleware('can:create.blog.administration');
 
-        Route::get('/{slug}', [BlogController::class, 'show'])
-        ->name('blog.administration.show')
-        ->middleware('can:see.blog.administration');
+            Route::get('/{slug}', [BlogController::class, 'show'])
+            ->name('blog.administration.show')
+            ->middleware('can:see.blog.administration');
 
-        Route::get('/{slug}/edit', [BlogController::class, 'edit'])
-        ->name('blog.administration.edit')
-        ->middleware('can:update.blog.administration');
+            Route::get('/{slug}/edit', [BlogController::class, 'edit'])
+            ->name('blog.administration.edit')
+            ->middleware('can:update.blog.administration');
 
 
-        Route::put('/{slug}/update', [BlogController::class, 'update'])
-        ->name('blog.administration.update')
-        ->middleware('can:update.blog.administration');
+            Route::put('/{slug}/update', [BlogController::class, 'update'])
+            ->name('blog.administration.update')
+            ->middleware('can:update.blog.administration');
 
-        Route::post('/destroy', [BlogController::class, 'destroy'])
-        ->name('blog.administration.destroy')
-        ->middleware('can:destroy.blog.administration');
-});
+            Route::post('/destroy', [BlogController::class, 'destroy'])
+            ->name('blog.administration.destroy')
+            ->middleware('can:destroy.blog.administration');
+    });
 // Blogs Administration
+
+// Blogs
+    Route::controller(PostController::class)->prefix('/blog')->group(function (){
+        Route::get('/', 'index')->name('blog');
+        Route::get('/{slug}', 'show')->name('blog.show');
+    });
+// Blogs
 
 // Ecommerce
     Route::get('/', [PageController::class, 'index'])->name('home');

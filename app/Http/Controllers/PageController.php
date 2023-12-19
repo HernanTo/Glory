@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -17,15 +18,18 @@ class PageController extends Controller
     {
         $latestProducts = Product::where('is_active', 1)->take(10)->orderby('created_at', 'desc')->get();
 
+        $products = Product::where('is_active', 1)->get()->random(10);
+
         $allCategories = Category::where('is_active', 1)->get();
 
-        $category = Category::where('is_active', 1)->where('name', 'motor')->get()->first();
-        $productsCategory = $category->products;
+        $posts = Blog::where('is_active', 1)->take(3)->orderby('created_at', 'desc')->get();
+
 
         return view('ecommerce.store.index', [
             'latestProducts' => $latestProducts,
-            'productsCategory' => $productsCategory,
             'allCategories' => $allCategories,
+            'productsRandom' => $products,
+            'posts' => $posts,
         ]);
     }
 
@@ -105,6 +109,7 @@ class PageController extends Controller
 
         $products = Product::where('name', 'LIKE', '%'. $term .'%')->where('is_active', 1)->take(8)->get();
         $categories = Category::where('name', 'LIKE', '%'. $term .'%')->where('is_active', 1)->take(2)->get();
+        $posts = Blog::where('title', 'LIKE', '%'. $term .'%')->where('is_active', 1)->take(3)->get();
 
         $data = [];
         foreach($products as $product){
@@ -118,6 +123,13 @@ class PageController extends Controller
             $data[] = [
                 'label' => $category->name,
                 'type' => 'categories',
+            ];
+        }
+        foreach($posts as $post){
+            $data[] = [
+                'label' => 'Blog: '. $post->title,
+                'slug' => $post->slug,
+                'type' => 'posts'
             ];
         }
 

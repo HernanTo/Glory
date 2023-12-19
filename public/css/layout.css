@@ -409,6 +409,10 @@ a.ui-button:active,
     font-weight: bold;
     color: var(--color-primary);
 }
+.form__cart{
+    width: 100%;
+    height: 100%;
+}
 .btn__add__car{
     border-style: none;
     border: 0px;
@@ -418,6 +422,8 @@ a.ui-button:active,
     background: var(--iron-900);
     color: white;
     border-radius: 8px;
+    width: 100%;
+    height: 100%;
 }
 .btn__add__car i{
     display: flex;

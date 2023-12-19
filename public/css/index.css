@@ -3,3 +3,114 @@
     flex-wrap: wrap-reverse;
     column-gap: 25px;
 }
+.section__width{
+    display: grid;
+    grid-template-columns: minmax(300px, 1200px);
+    justify-content: center;
+    padding: 30px;
+    padding-top: 45px;
+}
+.section__posts{
+    display: grid;
+    background: var(--iron-950);
+    row-gap: 20px;
+}
+.section__posts .con_left{
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+.section__posts .con_left video{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    object-fit: cover;
+    left: 0;
+    top: 0;
+    opacity: 1;
+}
+.section__posts .con_right{
+    display: grid;
+    row-gap: 20px;
+}
+.section__posts .con_right .header__card{
+    display: grid;
+    grid-template-columns: 1fr 65px;
+    /* grid-template-rows: 40px ; */
+}
+.section__posts .con_right .header__card h2{
+    color: white;
+    font-family: 'Alata';
+    margin: 0px;
+    grid-template-columns: fr ;
+}
+.section__posts .con_right .header__card a{
+    grid-column: 2/3;
+    grid-row: 1/3;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-family: 'Nunito Sans';
+}
+.section__posts .con_right .header__card small{
+    color: white;
+    font-family: 'Nunito Sans';
+}
+.body__card{
+    padding: 10px 18px;
+    display: grid;
+    row-gap: 35px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
+    justify-content: space-around;
+    column-gap: 20px;
+}
+.body__card .post__rec{
+    display: grid;
+    row-gap: 15px;
+    padding-bottom: 15px;
+    /* border-bottom: 2px solid white; */
+}
+.body__card .post__rec h3{
+    color: white;
+    font-family: 'Poppins';
+    font-weight: 300;
+    font-size: 14px;
+    margin: 0px;
+    text-align: left;
+}
+.body__card .post__rec img{
+    width: 100%;
+    max-height: 130px;
+    border-radius: 8px;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+    height: fit-content;
+}
+.body__card .post__rec a{
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Nunito Sans';
+    color: rgb(76, 124, 255);
+    font-weight: bold;
+}
+@media (min-width: 1200px){
+    .con__articles{
+        display: grid;
+        grid-template-columns: 450px 1fr;
+    }
+    .con_right{
+        padding: 0px 25px;
+    }
+    .body__card{
+        grid-template-columns: repeat(3, minmax(200px, 300px));
+    }
+}
