@@ -10,7 +10,7 @@
                 <button class="btn__search" aria-label="Buscar" type="submit"><i class="fi fi-rr-search"></i></button>
             </form>
         </div>
-        <div class="nav__car">
+        <div class="nav__car" id="nav__car">
             <i class="fi fi-rr-shopping-cart"></i>
         </div>
         <div class="con__link__bot">
@@ -42,8 +42,8 @@
                         @endcan
                         @can('getIntoViews.User')
                             <div class="src__user__nav">
-                                <a href="">Compras</a>
-                                <a href="">Carrito</a>
+                                <a href="{{route('compras')}}">Compras</a>
+                                <a href="{{route('carrito')}}">Carrito</a>
                                 <a href="{{ route('catalogo') }}">Cátalogo</a>
                             </div>
                         @endcan

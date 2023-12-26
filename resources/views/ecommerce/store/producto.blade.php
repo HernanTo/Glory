@@ -42,9 +42,9 @@
 
         <div class="con__b__info__product">
             @if ($product->stock > 0)
-            <h4>Stock disponible</h4>
+            <h4>Producto disponible</h4>
             @else
-            <h4>Stock no disponible</h4>
+            <h4>Producto agotado, pero disponible bajo pedido</h4>
             @endif
             @if ($product->available == 0 || $product->stock > 0)
                 <span class="available">Entrega Inmediata</span>
@@ -61,13 +61,21 @@
             @endif
         </div>
         <article class="con__actions_vertical">
-            {{-- <button class="btn__add__car__pro">
+            <button class="btn__add__car__pro" type="button" data-product="{{$product->id}}" id="btn__add__car__pro"
+                onclick="add(`{{url('carrito')}}`)">
                 <i class="fi fi-sr-shopping-cart-add"></i>
                 Añadir al carrito
-            </button> --}}
-            <a href="https://wa.link/ujys6j" class="btn__whatsapp__pro">
-                Escribenos por Whatsapp
-            </a>
+            </button>
+            @if ($product->stock <= 5)
+                <div class="alert alert-info alert__low_stock" role="alert">
+                    <b> Stock limitado: Quedan {{$product->stock}} unidades. </b>Si necesita más, realice un encargo del producto y <b>cancele el 50% del total</b>, si quiere continuar aún así agreguelo al carrito.
+                </div>
+            @endif
+            <div class="con__alert_l">
+                <div class="alert alert-info alert__low_stock alert__hide" role="alert" id="alert__low__stock__cart">
+                    Estás a punto de superar la cantidad disponible en stock para este producto en tu carrito. Para adquirir más unidades, realiza un encargo y <b>cubre el 50% del total de los productos faltantes como pago inicial</b>.
+                </div>
+            </div>
         </article>
     </section>
     @if (strlen($product->description) > 0)

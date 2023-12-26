@@ -51,6 +51,11 @@ class Product extends Model
             ->withPivot('price', 'stock', 'discount', 'total_prices');
     }
 
+    public function shoppingCarts(){
+        return $this->belongsToMany('App\Models\ShoppingCart', 'shopping_carts_has_products', 'id_product', 'id_cart')
+            ->withPivot('price', 'stock', 'total_prices');
+    }
+
     public function getImagesMainAttribute(){
         if(($this->images->first() == null)){
             return 'default.png';

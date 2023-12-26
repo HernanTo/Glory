@@ -18,7 +18,7 @@
         <i class="fi fi-sr-users-alt"></i>
         Compras
     </a>
-    <a href="">
+    <a href="{{route('carrito')}}">
         <i class="fi fi-sr-ballot-check"></i>
         Carrito
     </a>

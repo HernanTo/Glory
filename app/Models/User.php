@@ -91,4 +91,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo('App\Models\bill');
     }
 
+    public function shoppingCart(){
+        return $this->hasOne('App\Models\ShoppingCart', 'user');
+    }
+
 }

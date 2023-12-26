@@ -27,10 +27,11 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('img/logo_small.svg') }}" />
+    <link rel="stylesheet" href="{{asset('css/modal-cart.css')}}">
     @yield('styles')
     <!-- Styles -->
 </head>
-<body>
+<body id="body__main">
     @include('layouts.components.navbar')
 
     <main class="container__main">
@@ -38,19 +39,27 @@
     </main>
     @yield('sections_width')
 
+    @include('layouts.components.shopping-cart')
     @include('layouts.components.footer')
 
     <!-- Scripts -->
+        <script>
+            var asset_global='{{asset("/")}}';
+            var asset_products_global='{{asset("/img/products")}}';
+            var route_global='{{url("/")}}';
+        </script>
         <script src="{{ asset('libs/jquery/jquery.js') }}" ></script>
         <script src="{{ asset('libs/jquery-ui/jquery-ui.min.js') }}" ></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/layout.js') }}"></script>
+        <script src="{{ asset('js/cart.js') }}"></script>
         @if (auth()->user())
             <script src="{{ asset('js/dropdrown.js') }}"></script>
         @endif
         @yield('scripts')
 
-        @include('layouts.search')
+        @include('ecommerce.search.search')
+        {{-- @include('ecommerce.carrito.add') --}}
     <!-- Scripts -->
 </body>
 </html>

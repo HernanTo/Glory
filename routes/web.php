@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageProductController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 Route::get('/administration', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware('can:getInto.administration');
+Route::post('/check-auth', [PageController::class, 'check'])->name('check.auth');
 
 // Usuarios
     Route::group(
@@ -193,10 +195,21 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
     Route::get('/autocomplete', [PageController::class, 'search'])->name('search.eco');
     Route::get('/search', [PageController::class, 'searchProducts'])->name('search.products.eco');
     Route::get('/profileGeneral', [PageController::class, 'profile'])->name('profileGeneral');
-    Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 // Ecommerce
 
-// Profile
+// Carrito
+    Route::controller(ShoppingCartController::class)->prefix('/carrito')->middleware('can:getIntoViews.User')->group(function (){
+        Route::get('/', 'index')->name('carrito');
+        Route::post('/show', 'show')->name('carrito.show');
+        Route::post('/add', 'store')->name('carrito.add');
+        Route::post('/destroy', 'destroy')->name('carrito.destroy');
+        Route::post('/destroy/c', 'destroyForm')->name('carrito.destroy.c');
+        Route::put('/update', 'update')->name('carrito.update');
+        // Route::get('/producto/temp', 'index')->name('carrito.prod.temp');
+    });
+// Carrito
+
+// Settings
     Route::group(
         [
             'middleware' => ['auth', 'can:getInto.administration'],
@@ -233,6 +246,7 @@ Route::get('/administration', [App\Http\Controllers\HomeController::class, 'inde
             Route::get('/', [ProfileController::class, 'profile'])->name('profile');
             Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
             Route::put('/update', [ProfileController::class, 'update'])->name('profile.update');
+            Route::put('/compras', [ProfileController::class, 'edit'])->name('compras');
     });
 // User ecommerce
 

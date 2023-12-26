@@ -166,13 +166,20 @@ class PageController extends Controller
         ]);
     }
 
-
     public function profile(){
         if(auth()->user()->can('getInto.administration')){
             return redirect()->route('settings');
 
         }elseif(auth()->user()->can('getIntoViews.User')){
             return redirect()->route('profile');
+        }
+    }
+
+    public function check(){
+        if(!auth()->check()){
+            return response()->json(['login' => false]);
+        }else{
+            return response()->json(['login' => true]);
         }
     }
 }
