@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,28 +14,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        \dd('a');
-    }
+        $postsR = Blog::where('is_active', 1)->orderby('created_at', 'desc')->take(6)->get();
+        $posts = Blog::where('is_active', 1)->orderby('created_at', 'desc')->simplePaginate(6);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('blog.guest.index', ['posts' => $posts, 'postsR' => $postsR]);
     }
 
     /**
@@ -43,9 +26,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $post =  Blog::where('slug', $slug)->get()->first();
+        $postsR = Blog::where('is_active', 1)->orderby('created_at', 'desc')->take(6)->get();
+        if(!$post){
+            abort(404);
+        }
+
+        return \view('blog.guest.post', ['post' => $post, 'postsR' => $postsR]);
     }
 
     /**

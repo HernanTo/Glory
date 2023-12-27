@@ -133,14 +133,14 @@
             <div class="header__card">
                 <h2>Articulos</h2>
                 <small>Articulos recientes</small>
-                <a href="">Ver todos</a>
+                <a href="{{route('blog')}}">Ver todos</a>
             </div>
             <div class="body__card">
                 @foreach ($posts as $post)
                     <div class="post__rec">
                         <img src="{{asset('img/blog/' . $post->path)}}" alt="{{$post->title}}">
                         <h3>{{$post->title}}</h3>
-                        <a href="" class="btn__post">Ver más</a>
+                        <a href="{{route('blog.show', $post->slug)}}" class="btn__post">Ver más</a>
                     </div>
                 @endforeach
             </div>
