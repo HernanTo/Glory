@@ -1,0 +1,26 @@
+.container-general{
+    display: grid;
+    grid-template-columns: repeat(1, minmax(300px, 1200px));
+    justify-content: center;
+}
+.con__quick__access{
+    background: var(--iron-200);
+    padding: 15px;
+    border-radius: 8px;
+}
+.con__quick__access small{
+    font-family: 'Alata';
+    font-size: 15.5px;
+}
+.con__src{
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    column-gap: 10px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.con__src a{
+    text-decoration: none;
+}
