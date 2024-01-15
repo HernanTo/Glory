@@ -87,8 +87,10 @@
 @section('scripts')
 <script src="{{asset('js/products.js')}}"></script>
 <script>
-    document.getElementById('order__select').addEventListener('change', event =>{
-        document.getElementById('search_filter').submit();
-    });
-    </script>
+    if(document.getElementById('order__select')){
+        document.getElementById('order__select').addEventListener('change', event =>{
+            document.getElementById('search_filter').submit();
+        });
+    }
+</script>
 @endsection

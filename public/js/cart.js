@@ -1,16 +1,31 @@
 const sintaxProd = '<div class="prod" id="template__prod"> <a href=":slug" class="con__img__prodc"> <figure> <img src=":image" alt=":name" title=":title"></figure></a><a class="name__prod" href=":slug-name">:nameFor</a> <p class="stock__prod">Can: :can <a href=""><i class="fi fi-sr-pencil"></i></a> </p> <p class="prices">:price</p><button class="btn__trash__product" title="Eliminar" id="trash-:id" data-product=":data-id"><i class="fi fi-sr-trash"></i></button></div>';
 const sinxtaxEmpty = $('.con__cl')[0];
+
 $(document).ready(()=>{
+    let state = true;
     $.ajax({
-        url: route_global + "/carrito/show",
+        url: route_global + "/check-auth",
         data: {
-            "_token": $("meta[name='csrf-token']").attr("content"),
+            "_token": $("meta[name='csrf-token']").attr("content")
         },
-        dataType: "json",
-        method: "POST",
+        method: 'POST',
+        dataType: 'json',
         success: function(response) {
-            verficationStock(response.mix);
-        },
+            if(response.login == true){
+                $.ajax({
+                    url: route_global + "/carrito/show",
+                    data: {
+                        "_token": $("meta[name='csrf-token']").attr("content"),
+                    },
+                    dataType: "json",
+                    method: "POST",
+                    success: function(response) {
+                        verficationStock(response.mix);
+                    },
+                });
+            }
+        }
+
     });
 });
 function check(){

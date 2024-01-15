@@ -1,7 +1,7 @@
 <div class="con__shopping__cart" id="con__shopping__cart">
     <nav class="nav_shopping__cart">
         <div class="header_shopping__cart">
-            <button type="button" onclick="closeCart()" class="btn_close_cart">
+            <button type="button" onclick="closeCart()" class="btn_close_cart" title="Cerrar carrito">
                 <i class="fi fi-sr-cross"></i>
             </button>
             <h4>Carrito de compras</h4>
