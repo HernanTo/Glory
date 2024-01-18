@@ -7,3 +7,10 @@ function formatCurrency(number) {
 
     return formattedNumber;
 }
+function showToast(bodyToast){
+    $('#toast__general').toast('show');
+    $('#toast__body').empty();
+    document.getElementById('toast__body').appendChild(bodyToast);
+}
+
+

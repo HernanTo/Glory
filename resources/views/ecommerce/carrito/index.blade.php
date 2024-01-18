@@ -50,7 +50,11 @@
                                         <select name="quantity" class="quantity" id="quantity__{{$product['id']}}" data-product="{{$product['id']}}">
                                             @if ($product['stockCurrently'] > 0)
                                                 @for ($i = 1; $i <= $product['stockCurrently']; $i++)
-                                                    <option value="{{$i}}">{{$i}}</option>
+                                                    @if ($i == $product['stockCart'])
+                                                        <option value="{{$i}}" selected>{{$i}}</option>
+                                                    @else
+                                                        <option value="{{$i}}">{{$i}}</option>
+                                                    @endif
                                                 @endfor
                                             @else
                                                 <option value="delete">Sin Stock</option>
@@ -93,11 +97,11 @@
             </section>
             <section class="resumen__cart">
                 <article class="section__pay__resume">
-                    <p>Subtotal: <span class="prices">{{$cart['']}}</span></p>
+                    <p>Subtotal: <span class="prices">{{$cart['total']}}</span></p>
                     <p>Gastos de envío: <span>Por definir</span></p>
                 </article>
                 <article class="con__pay">
-                    <h2 class="title__total__cart">Total <span class="prices">{{$cart['']}}</span></h2>
+                    <h2 class="title__total__cart">Total <span class="prices">{{$cart['total']}}</span></h2>
                     <form action="" method="get">
                         <div class="form-group group__privacy">
                             <input type="checkbox" name="privacy" id="privacy">
@@ -121,4 +125,15 @@
 @section('scripts')
     <script src="{{asset('js/products.js')}}"></script>
     <script src="{{asset('js/cart-shop.js')}}"></script>
+    @if (session('check'))
+        <script>
+            $(document).ready(()=>{
+                let span = document.createElement('span');
+                span.appendChild(document.createTextNode('Se ha actualizado el carrito con éxito'));
+                showToast(span);
+            });
+        </script>
+    @else
+        <script>console.log('coma mierda')</script>
+    @endif
 @endsection

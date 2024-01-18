@@ -240,13 +240,13 @@ Route::post('/check-auth', [PageController::class, 'check'])->name('check.auth')
 // User ecommerce
     Route::group(
         [
-            'prefix' => 'profile',
+            'prefix' => 'perfil',
             'middleware' => ['auth', 'can:getIntoViews.User', 'verified']
         ], function (){
             Route::get('/', [ProfileController::class, 'profile'])->name('profile');
             Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
             Route::put('/update', [ProfileController::class, 'update'])->name('profile.update');
-            Route::put('/compras', [ProfileController::class, 'edit'])->name('compras');
+            Route::put('/compras', [ProfileController::class, 'shop'])->name('compras');
     });
 // User ecommerce
 

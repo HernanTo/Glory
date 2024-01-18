@@ -187,17 +187,6 @@ class ShoppingCartController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\shoppingCart  $shoppingCart
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(shoppingCart $shoppingCart)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -206,8 +195,30 @@ class ShoppingCartController extends Controller
      */
     public function update(Request $request)
     {
-        //
+        $user = auth()->user();
+        $cart = $user->shoppingCart;
+        // Verifica que el usuario este ligado a un carrito, en caso de que no, lo creara
+        if($cart == null){
+            $cart = $this->storeCart($user);
+        }
+        $product = Product::where('id', $request->product)->where('is_active', 1)->get()->first();
+        if($product){
+            if($product->stock >= $request->quantity){
+                DB::table('shopping_carts_has_products')
+                ->where('id_cart', $cart->id)
+                ->where('id_product', $request->product)
+                ->update(['stock' => $request->quantity]);
+
+                return redirect()->route('carrito')->with('check', 'Update cart');
+
+            }else{
+                return redirect()->route('carrito')->with('error', 'insufficient_stock');
+            }
+        }else{
+            return redirect()->route('carrito')->with('error', 'product_no_exits');
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

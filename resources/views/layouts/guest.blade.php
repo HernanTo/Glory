@@ -42,6 +42,7 @@
     @include('layouts.components.shopping-cart')
     @include('layouts.components.footer')
 
+    <x-toast-general/>
     <!-- Scripts -->
         <script>
             var asset_global='{{asset("/")}}';

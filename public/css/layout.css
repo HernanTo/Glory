@@ -534,6 +534,10 @@ a.ui-button:active,
     user-select: none;
     pointer-events: none;
 }
+.toast-header img{
+    width: 20px !important;
+    height: 20px !important;
+}
 @media (min-width: 720px){
 /* Navbar */
     .header .nav{
