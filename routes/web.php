@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageProductController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShoppingCartController;
@@ -246,9 +247,16 @@ Route::post('/check-auth', [PageController::class, 'check'])->name('check.auth')
             Route::get('/', [ProfileController::class, 'profile'])->name('profile');
             Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
             Route::put('/update', [ProfileController::class, 'update'])->name('profile.update');
-            Route::put('/compras', [ProfileController::class, 'shop'])->name('compras');
     });
 // User ecommerce
+// Resume shopping
+    Route::controller(OrderController::class)
+        ->middleware('auth', 'can:getIntoViews.User', 'verified')
+        ->group(function(){
+            Route::get('perfil/compras', 'index')->name('compras');
+        }
+    );
+// Resume shopping
 
 // Password
     Route::put('/password/update', [ProfileController::class, 'updatePassword'])->name('profile.password')->middleware('auth');

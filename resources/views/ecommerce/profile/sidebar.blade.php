@@ -14,7 +14,7 @@
     </a>
     <section class="sect__asidebar">
     </section>
-    <a href="">
+    <a href="{{route('compras')}}">
         <i class="fi fi-sr-users-alt"></i>
         Compras
     </a>

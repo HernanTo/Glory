@@ -14,7 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::where('is_active', 1)->get();
+
+        return \view('ecommerce.compras.index', compact('orders'));
     }
 
     /**

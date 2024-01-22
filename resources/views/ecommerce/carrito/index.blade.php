@@ -129,11 +129,9 @@
         <script>
             $(document).ready(()=>{
                 let span = document.createElement('span');
-                span.appendChild(document.createTextNode('Se ha actualizado el carrito con éxito'));
+                span.appendChild(document.createTextNode("{{session('check')}}"));
                 showToast(span);
             });
         </script>
-    @else
-        <script>console.log('coma mierda')</script>
     @endif
 @endsection

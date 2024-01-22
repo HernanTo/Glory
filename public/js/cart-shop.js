@@ -12,12 +12,13 @@ $(document).ready(() => {
             }
         });
     }
-
-    document.getElementById('privacy').addEventListener('change', ()=>{
-        if(document.getElementById('privacy').checked){
-            document.getElementById('btn__pay').disabled = false;
-        }else{
-            document.getElementById('btn__pay').disabled = true;
-        }
-    });
+    if(document.getElementById('privacy')){
+        document.getElementById('privacy').addEventListener('change', ()=>{
+            if(document.getElementById('privacy').checked){
+                document.getElementById('btn__pay').disabled = false;
+            }else{
+                document.getElementById('btn__pay').disabled = true;
+            }
+        });
+    }
 });

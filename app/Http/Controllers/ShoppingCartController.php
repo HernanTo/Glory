@@ -207,9 +207,14 @@ class ShoppingCartController extends Controller
                 DB::table('shopping_carts_has_products')
                 ->where('id_cart', $cart->id)
                 ->where('id_product', $request->product)
-                ->update(['stock' => $request->quantity]);
+                ->update([
+                    'stock' => $request->quantity,
+                    'total_prices' => ($product->price * $request->quantity)
+                ]);
 
-                return redirect()->route('carrito')->with('check', 'Update cart');
+                $this->updateVal($cart);
+
+                return redirect()->route('carrito')->with('check', 'Carrito actualizado con éxito');
 
             }else{
                 return redirect()->route('carrito')->with('error', 'insufficient_stock');
@@ -262,6 +267,6 @@ class ShoppingCartController extends Controller
 
         $this->updateVal($cart);
 
-        return redirect()->route('carrito');
+        return redirect()->route('carrito')->with('check', 'Producto eliminado del carrito');
     }
 }
