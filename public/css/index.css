@@ -5,7 +5,7 @@
 }
 .section__width{
     display: grid;
-    grid-template-columns: minmax(300px, 1550px);
+    grid-template-columns: minmax(300px, 1500px);
     justify-content: center;
     padding: 30px;
     padding-top: 45px;

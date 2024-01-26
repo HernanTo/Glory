@@ -11,11 +11,11 @@
     display: grid;
     justify-content: center;
     background: var(--color-bg-gray);
-    grid-template-columns: minmax(300px, 1550px);
+    grid-template-columns: minmax(300px, 1500px);
 }
 .container__main{
     display: grid;
-    grid-template-columns: minmax(300px, 1550px);
+    grid-template-columns: minmax(300px, 1500px);
     justify-content: center;
 }
 .header .nav{
@@ -118,13 +118,13 @@ a.ui-button:active,
 /* footer */
 .footer{
     display: grid;
-    grid-template-columns: minmax(300px, 1550px);
+    grid-template-columns: minmax(300px, 1500px);
     background: #e6e5e52e;
     justify-content: center;
 }
 .footer .container__footer{
     display: grid;
-    grid-template-columns: minmax(300px, 1550px);
+    grid-template-columns: minmax(300px, 1500px);
     justify-content: center;
     row-gap: 30px;
     padding: 30px 30px;
@@ -871,7 +871,7 @@ a.ui-button:active,
 /* btn whatsapp */
 .con__section_prods__min{
     display: grid;
-    grid-template-columns: minmax(300px, 1550px);
+    grid-template-columns: minmax(300px, 1500px);
     justify-content: center;
     padding: 50px 0px;
 }
@@ -885,7 +885,7 @@ a.ui-button:active,
         grid-template-columns: 1fr 350px;
     }
     .container_content{
-        padding: 50px 0px 0px 0px;
+        padding: 50px 30px;
     }
     .user__nav{
         right: auto;

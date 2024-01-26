@@ -1,6 +1,6 @@
 .container-general{
     display: grid;
-    grid-template-columns: minmax(300px, 1550px);
+    grid-template-columns: minmax(300px, 1500px);
     justify-content: center;
 }
 .container-product{
