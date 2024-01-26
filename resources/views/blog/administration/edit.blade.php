@@ -79,7 +79,6 @@
             let validation = true;
 
             for (let i = 0; i < filesPath.length; i++) {
-                console.log(filesPath[i]);
                 if(!allowedExtensions.exec(filesPath[i].name)){
                     validation = false;
                 }

@@ -56,6 +56,10 @@
                     <i class="fi fi-sr-settings"></i>
                     <p>Configuraciones</p>
                 </a>
+                <a href="{{route('cms')}}" class="items-sidebar">
+                    <i class="fi fi-sr-edit"></i>
+                    <p>CMS</p>
+                </a>
             @endcan
 
         </div>

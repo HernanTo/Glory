@@ -1,6 +1,6 @@
 .container-general{
     display: grid;
-    grid-template-columns: repeat(1, minmax(300px, 1200px));
+    grid-template-columns: minmax(300px, 1550px);
     justify-content: center;
 }
 .container__port{

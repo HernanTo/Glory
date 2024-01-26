@@ -4,7 +4,6 @@ document.getElementById('img-profil-c').addEventListener('change', event => {
     var fileInput = document.getElementById('img-profil-c');
     var filePath = fileInput.value;
     var allowedExtensions = /(.jpg|.jpeg|.png)$/i;
-    console.log('filePath');
     if(!allowedExtensions.exec(filePath)){
             $('#err_img_prod').modal('show');
             fileInput.value = '';
@@ -15,7 +14,6 @@ document.getElementById('img-profil-c').addEventListener('change', event => {
         }
         reader.readAsDataURL(event.target.files[0]);
         document.getElementById('changepicturestate').value = 1;
-        console.log('a');
     }
 }
 )

@@ -9,21 +9,21 @@
 </div>
 <div class="asidebar">
     <a href="{{route('profile.edit')}}">
-        <i class="fi fi-sr-user"></i>
+        <i class="fi fi-br-user"></i>
         Editar perfil
     </a>
     <section class="sect__asidebar">
     </section>
     <a href="{{route('compras')}}">
-        <i class="fi fi-sr-users-alt"></i>
+        <i class="fi fi-br-users-alt"></i>
         Compras
     </a>
     <a href="{{route('carrito')}}">
-        <i class="fi fi-sr-ballot-check"></i>
+        <i class="fi fi-br-ballot-check"></i>
         Carrito
     </a>
     <a href="">
-        <i class="fi fi-sr-box-open-full"></i>
+        <i class="fi fi-br-box-open-full"></i>
         Cotizaciones
     </a>
 </div>

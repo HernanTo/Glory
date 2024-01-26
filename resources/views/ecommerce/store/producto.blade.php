@@ -63,7 +63,7 @@
         <article class="con__actions_vertical">
             <button class="btn__add__car__pro" type="button" data-product="{{$product->id}}" id="btn__add__car__pro"
                 onclick="add(`{{url('carrito')}}`)">
-                <i class="fi fi-sr-shopping-cart-add"></i>
+                <i class="fi fi-br-shopping-cart-add"></i>
                 Añadir al carrito
             </button>
             @if ($product->stock <= 5)

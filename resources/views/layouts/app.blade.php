@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +21,8 @@
 </head>
 <body>
     <div class="con-main-general">
-        @include('layouts.components.administration.sidebar')
-        @include('layouts.components.administration.navbar')
+        <x-administration.layout.sidebar />
+        <x-administration.layout.navbar />
 
         <main class="container-general">
             @yield('content')

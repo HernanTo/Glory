@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Content;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -19,17 +20,21 @@ class PageController extends Controller
         $latestProducts = Product::where('is_active', 1)->take(10)->orderby('created_at', 'desc')->get();
 
         $products = Product::where('is_active', 1)->get()->random(10);
+        $product = Product::where('is_active', 1)->get()->random(2)->first();
 
         $allCategories = Category::where('is_active', 1)->get();
 
         $posts = Blog::where('is_active', 1)->take(3)->orderby('created_at', 'desc')->get();
 
+        $pictures = Content::all();
 
         return view('ecommerce.store.index', [
             'latestProducts' => $latestProducts,
             'allCategories' => $allCategories,
             'productsRandom' => $products,
+            'productRandom' => $product,
             'posts' => $posts,
+            'pictures'=> $pictures
         ]);
     }
 

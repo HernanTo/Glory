@@ -206,7 +206,6 @@ function addProductList(product){
         pricesTotal();
     })
 
-    console.log(document.getElementById(`discounts-${product.id}`));
     document.getElementById(`discounts-${product.id}`).addEventListener('change', event =>{
         if(document.getElementById(`discounts-${product.id}`).value == 'NA'){
             product.descuento = 'NA';

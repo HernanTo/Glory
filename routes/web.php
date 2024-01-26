@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ImageProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
@@ -146,6 +147,14 @@ Route::post('/check-auth', [PageController::class, 'check'])->name('check.auth')
     });
 // Cotizaciones
 
+// CMS
+    Route::controller(ContentController::class)->prefix('administration/cms')->middleware('auth', 'can:getInto.administration')->group(function (){
+        Route::get('/', 'index')->name('cms');
+        Route::post('/create', 'store')->name('cms.create');
+        Route::delete('/delete', 'destroy')->name('cms.delete');
+    });
+// CMS
+
 // Blogs Administration
     Route::group(
         [
@@ -199,9 +208,9 @@ Route::post('/check-auth', [PageController::class, 'check'])->name('check.auth')
 // Ecommerce
 
 // Carrito
-    Route::controller(ShoppingCartController::class)->prefix('/carrito')->middleware('can:getIntoViews.User')->group(function (){
+    Route::controller(ShoppingCartController::class)->prefix('/carrito')->group(function (){
         Route::get('/', 'index')->name('carrito');
-        Route::post('/show', 'show')->name('carrito.show');
+        Route::post('/show', 'show')->name('carrito.show')->middleware('can:getIntoViews.User');
         Route::post('/add', 'store')->name('carrito.add');
         Route::post('/destroy', 'destroy')->name('carrito.destroy');
         Route::post('/destroy/c', 'destroyForm')->name('carrito.destroy.c');

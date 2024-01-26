@@ -1,4 +1,6 @@
-<header class="header">
+<div>
+    <!-- Order your soul. Reduce your wants. - Augustine -->
+</div><header class="header">
     <nav class="nav">
         <a class="con__ico" href="{{route('home')}}">
             <img src="{{ asset('img/logo_small.svg') }}" alt="Glory Store" class="logo__small" title="Glory Store">
@@ -11,7 +13,7 @@
             </form>
         </div>
         <div class="nav__car" id="nav__car">
-            <i class="fi fi-rr-shopping-cart"></i>
+            <i class="fi fi-br-shopping-cart"></i>
         </div>
         <div class="con__link__bot">
             <a href="{{ route('tiendas') }}">Nuestra tienda</a>

@@ -29,34 +29,36 @@
             @endphp
         @endforeach
         @if ($state)
-            <article class="con__filter__list">
-                <form action="{{route('category.productos', "$category->name")}}" method="get" id="search_filter">
-                    <label for="order__select">Ordernar por</label>
-                    <select name="order" id="order__select" class="order__select">
-                        <option value="">Relevancia</option>
-                        @if (request('order') == 'desc')
-                            <option value="desc" selected>Mayor precio</option>
-                        @else
-                            <option value="desc">Mayor precio</option>
+            <div class="con__box__prod__ca">
+                <article class="con__filter__list">
+                    <form action="{{route('category.productos', "$category->name")}}" method="get" id="search_filter">
+                        <label for="order__select">Ordernar por</label>
+                        <select name="order" id="order__select" class="order__select">
+                            <option value="">Relevancia</option>
+                            @if (request('order') == 'desc')
+                                <option value="desc" selected>Mayor precio</option>
+                            @else
+                                <option value="desc">Mayor precio</option>
+                            @endif
+                            @if (request('order') == 'asc')
+                                <option value="asc" selected>Menor precio</option>
+                            @else
+                                <option value="asc">Menor precio</option>
+                            @endif
+                        </select>
+                    </form>
+                </article>
+                <div class="con__products">
+                    @foreach ($productsCategory as $product)
+                        @if ($product->is_active)
+                            <x-store.components.product-basic :product="$product" />
                         @endif
-                        @if (request('order') == 'asc')
-                            <option value="asc" selected>Menor precio</option>
-                        @else
-                            <option value="asc">Menor precio</option>
-                        @endif
-                    </select>
-                </form>
-            </article>
-            <div class="con__products">
-                @foreach ($productsCategory as $product)
-                    @if ($product->is_active)
-                        @include('layouts.components.product-basic')
-                    @endif
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         @else
             <section class="products__not__found">
-                <i class="fi fi-ss-binoculars"></i>
+                <i class="fi fi-br-binoculars"></i>
                 <div class="con__list__ps">
                     <h2>No se encontraron repuestos</h2>
                     <ul>
@@ -70,7 +72,7 @@
         @endif
     @else
         <section class="products__not__found">
-            <i class="fi fi-ss-binoculars"></i>
+            <i class="fi fi-br-binoculars"></i>
             <div class="con__list__ps">
                 <h2>No se encontraron repuestos</h2>
                 <ul>

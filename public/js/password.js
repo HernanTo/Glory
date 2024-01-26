@@ -28,7 +28,6 @@ inputCurretntPass.addEventListener('change', event=>{
     document.getElementById('current-pasw-inv').appendChild(document.createTextNode('Ingrese una contraseña válida'));
 
     stateFormsPass[0].state = false;
-    console.log('a');
   }else{
     if(verActNew()){
       $(newPassword).removeClass('is-invalid');

@@ -9,71 +9,18 @@
 
 @section('content')
 <section class="banner">
-    <div id="carousel__desk" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-current="true" aria-label="Slide2"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="5000">
-            <img src="{{ asset('img/glory.jpg') }}" class="d-block w-100" alt="">
-          </div>
-          <div class="carousel-item" data-bs-interval="5000">
-            <img src="{{ asset('img/glory_sup.jpg') }}" class="d-block w-100" alt="">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-    </div>
-    <div id="carousel__mobile" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-current="true" aria-label="Slide2"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="5000">
-              <img src="{{ asset('img/glory.jpg') }}" class="d-block w-100" alt="">
-            </div>
-            <div class="carousel-item" data-bs-interval="5000">
-              <img src="{{ asset('img/glory_sup.jpg') }}" class="d-block w-100" alt="">
-            </div>
-          </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-    </div>
+    <x-store.components.carousel :content="$pictures" />
 </section>
 <div class="container_content">
-    <section class="con__section_prods">
+
+    <x-store.components.section-category :categories="$allCategories"/>
+
+    <section class="con__section_prods con__section_prods__bg">
         <div class="header__section__prods">
             <h2>Nuevos Productos</h2>
         </div>
-        <div class="slider__divs slider__divs__products">
-            <div class="btn__actions__band span__left" id="leftButtonP">
-                <i class="fi fi-br-angle-left"></i>
-            </div>
-            <div class="con__products con__products__band">
-                @foreach ($latestProducts as $product)
-                    @include('layouts.components.product-band')
-                @endforeach
-            </div>
-            <div class="btn__actions__band span__right" id="rightButtonP">
-                <i class="fi fi-br-angle-right"></i>
-            </div>
-        </div>
+        <x-store.components.product-band :products="$latestProducts"/>
     </section>
-    @include('layouts.components.section_category')
 </div>
 @endsection
 
@@ -104,24 +51,24 @@
         <p>Pagos seguros</p>
     </span>
 </section>
-<section class="con__section_prods section__width">
-    <div class="header__section__prods">
-        <h2>Te podría interesar</h2>
+<div class="con__section_prods__min">
+    <div class="grid__section__prods">
+        <section class="con__section_prods section__width con__section_prods__bg">
+            <div class="header__section__prods">
+                <h2>Te podría interesar</h2>
+            </div>
+            <x-store.components.product-band :products="$productsRandom"/>
+        </section>
+        <section class="con__section_prods section__width con__section_prods__bg">
+            <div class="header__section__prods">
+                <h2>En tendencia</h2>
+            </div>
+            <div>
+                <x-store.components.product-basic  :product="$productRandom"/>
+            </div>
+        </section>
     </div>
-    <div class="slider__divs slider__divs__products">
-        <div class="btn__actions__band span__left" id="leftButtonP">
-            <i class="fi fi-br-angle-left"></i>
-        </div>
-        <div class="con__products con__products__band">
-            @foreach ($productsRandom as $product)
-                @include('layouts.components.product-band')
-            @endforeach
-        </div>
-        <div class="btn__actions__band span__right" id="rightButtonP">
-            <i class="fi fi-br-angle-right"></i>
-        </div>
-    </div>
-</section>
+</div>
 <section class="section__width section__posts">
     <article class="con__articles">
         <div class="con_left">
