@@ -9,7 +9,7 @@
         <div class="con__search">
             <form action="{{ route('search.products.eco') }}" method="GET" id="form__search">
                 <input type="text" name="p" id="search" class="search" placeholder="Buscar repuestos, marcas y más..." aria-label="Ingresa lo que quieras buscar"  value="{{ $search ?? '' }}">
-                <button class="btn__search" aria-label="Buscar" type="submit"><i class="fi fi-rr-search"></i></button>
+                <button class="btn__search" aria-label="Buscar" type="submit"><i class="fi fi-br-search"></i></button>
             </form>
         </div>
         <div class="nav__car" id="nav__car">
