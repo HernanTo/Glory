@@ -3,8 +3,8 @@
 </div><header class="header">
     <nav class="nav">
         <a class="con__ico" href="{{route('home')}}">
-            <img src="{{ asset('img/logo_small.svg') }}" alt="Glory Store" class="logo__small" title="Glory Store">
-            <img src="{{ asset('img/logoc.svg') }}" alt="Glory Store" class="logo__full" title="Glory Store">
+            <img loading="lazy" src="{{ asset('img/logo_small.svg') }}" alt="Glory Store" class="logo__small" title="Glory Store">
+            <img loading="lazy" src="{{ asset('img/logoc.svg') }}" alt="Glory Store" class="logo__full" title="Glory Store">
         </a>
         <div class="con__search">
             <form action="{{ route('search.products.eco') }}" method="GET" id="form__search">

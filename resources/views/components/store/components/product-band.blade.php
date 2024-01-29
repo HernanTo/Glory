@@ -10,7 +10,7 @@
         @if ($product->is_active)
             <a href="{{route('producto.producto', $product->slug)}}" class="product product__band">
                 <figure class="con__img_prod">
-                    <img src="{{asset('img/products/' . $product->imagesMain)}}" alt="{{$product->name}}" title="{{$product->name}}">
+                    <img loading="lazy" src="{{asset('img/products/' . $product->imagesMain)}}" alt="{{$product->name}}" title="{{$product->name}}">
                 </figure>
                 <div class="info__prod">
                     <div class="con__name_prod">

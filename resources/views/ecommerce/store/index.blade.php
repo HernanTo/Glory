@@ -28,25 +28,25 @@
 <section class="container__benefits">
     <span>
         <figure>
-            <img src="{{asset('img/original.webp')}}" alt="Repuestos originales" title="Repuestos originales">
+            <img loading="lazy" src="{{asset('img/original.webp')}}" alt="Repuestos originales" title="Repuestos originales">
         </figure>
         <p>Repuestos originales</p>
     </span>
     <span>
         <figure>
-            <img src="{{asset('img/badge.webp')}}" alt="Garantía a los repuestos" title="Garantía">
+            <img loading="lazy" src="{{asset('img/badge.webp')}}" alt="Garantía a los repuestos" title="Garantía">
         </figure>
         <p>Garantía</p>
     </span>
     <span>
         <figure>
-            <img src="{{asset('img/protection.webp')}}" alt="Calidad garantizada" title="Calidad garantizada">
+            <img loading="lazy" src="{{asset('img/protection.webp')}}" alt="Calidad garantizada" title="Calidad garantizada">
         </figure>
         <p>Calidad garantizada</p>
     </span>
     <span>
         <figure>
-            <img src="{{asset('img/payu.webp')}}" alt="PayU" title="PayU">
+            <img loading="lazy" src="{{asset('img/payu.webp')}}" alt="PayU" title="PayU">
         </figure>
         <p>Pagos seguros</p>
     </span>
@@ -73,7 +73,7 @@
     <article class="con__articles">
         <div class="con_left">
             <video autoplay loop muted>
-                <source src="{{asset('videos/glory.mp4')}}" type="video/mp4">
+                <source src="{{asset('videos/glory.webm')}}" type="video/mp4">
             </video>
         </div>
         <div class="con_right">

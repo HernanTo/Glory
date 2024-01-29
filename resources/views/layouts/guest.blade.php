@@ -13,14 +13,12 @@
     <meta property="og:image" content="@yield('meta_op_img', asset('img/logoc.svg'))">
     <title>@yield('title', 'Glory Store')</title>
     {{-- Meta --}}
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
     {{-- <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'> --}}
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-brands/css/uicons-brands.css'>
+    <link rel="preload" type="text/css" href='{{asset('libs/flaticon/uicons-bold-rounded.css')}}'>
+    <link rel="preload" type="text/css" href='{{asset('libs/flaticon/uicons-brands.css')}}'>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('libs/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
@@ -49,10 +47,10 @@
             var asset_products_global='{{asset("/img/products")}}';
             var route_global='{{url("/")}}';
         </script>
-        <script src="{{ asset('libs/jquery/jquery.js') }}" ></script>
-        <script src="{{ asset('libs/jquery-ui/jquery-ui.min.js') }}" ></script>
+        <script src="{{ asset('libs/jquery/jquery.js') }}"></script>
+        <script src="{{ asset('libs/jquery-ui/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="{{ asset('js/layout.js') }}"></script>
+        <script src="{{ asset('js/layout.js') }}" defer></script>
         <script src="{{ asset('js/cart.js') }}"></script>
         @yield('scripts')
 

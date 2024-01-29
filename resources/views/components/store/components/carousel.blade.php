@@ -6,11 +6,11 @@
         @foreach ($content as $img)
             @if ($i)
                 <div class="carousel-item active" data-bs-interval="4000">
-                    <img src="{{ asset('img/content/' . $img->path) }}" class="d-block w-100" alt="">
+                    <img loading="lazy" src="{{ asset('img/content/' . $img->path) }}" class="d-block w-100" alt="Glory Store">
                 </div>
             @else
                 <div class="carousel-item " data-bs-interval="4000">
-                    <img src="{{ asset('img/content/' . $img->path) }}" class="d-block w-100" alt="">
+                    <img loading="lazy" src="{{ asset('img/content/' . $img->path) }}" class="d-block w-100" alt="Glory Store" >
                 </div>
             @endif
             @php

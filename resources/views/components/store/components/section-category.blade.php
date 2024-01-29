@@ -19,7 +19,7 @@
             @foreach ($categories as $category)
                 <a href="{{ route('category.productos', "$category->name") }}" class="category_btn" title="{{$category->name}}">
                     <figure>
-                        <img src="{{ asset('img/categories/' . $category->photo_category) }}" alt="Repuestos relacionados con {{$category->name}}" class="ico__category" title="{{$category->name}}, Imagen de Freepink">
+                        <img loading="lazy" src="{{ asset('img/categories/' . $category->photo_category) }}" alt="Repuestos relacionados con {{$category->name}}" class="ico__category" title="{{$category->name}}, Imagen de Freepink">
                     </figure>
                     <h3>{{$category->name}}</h3>
                 </a>

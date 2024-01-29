@@ -5,7 +5,7 @@
 <footer class="footer">
     <div class="container__footer">
         <a class="con__logo_footer" href="{{ route('home') }}">
-            <img src="{{ asset('img/logoc.svg') }}" alt="Glory Store" class="logo__full" title="Glory Store">
+            <img loading="lazy" src="{{ asset('img/logoc.svg') }}" alt="Glory Store" class="logo__full" title="Glory Store">
         </a>
         <div class="con__red__footer">
             <h4>Siguenos en</h4>
@@ -58,5 +58,5 @@
     </div>
 </footer>
 <div class="band__footer">
-    <img src="{{asset('img/MediosPago.webp')}}" alt="Medios de pago PayU" title="Todos los medios de pago aceptados por PayU">
+    <img loading="lazy" src="{{asset('img/MediosPago.webp')}}" alt="Medios de pago PayU" title="Todos los medios de pago aceptados por PayU">
 </div>
