@@ -116,6 +116,14 @@
                                 <label>Dirección</label>
                                 <input type="text" name="address" id="address" value="{{$item->address}}" placeholder="Dirección" class="form-control shadow-none">
                             </section>
+                            <section class="edit-two-c-ac form__group_glory">
+                                <label>Modelo</label>
+                                <input type="text" name="modelo" id="address" value="{{$item->modelo}}" placeholder="Modelo" class="form-control shadow-none">
+                            </section>
+                            <section class="edit-two-c-ac form__group_glory">
+                                <label>Placa</label>
+                                <input type="text" name="placa" id="address" value="{{$item->placa}}" placeholder="Placa" class="form-control shadow-none">
+                            </section>
                             <section class="con-sub-edi-p">
                                 <input type="submit" value="Actualizar datos" class="btn__subm btn">
                             </section>

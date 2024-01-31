@@ -104,7 +104,9 @@ class CustomerController extends Controller
             'phone_number' => $request->input('phone'),
             'address' => $request->input('address'),
             'email' => $request->input('email'),
-            'profile_photo_path' => $image_name
+            'profile_photo_path' => $image_name,
+            'modelo' => $request->input('modelo'),
+            'placa' => $request->input('placa'),
         ]);
 
         return redirect()->route('usuarios');

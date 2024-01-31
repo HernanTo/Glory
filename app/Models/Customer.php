@@ -19,7 +19,9 @@ class Customer extends Model
         'address',
         'email',
         'profile_photo_path',
-        'is_active'
+        'is_active',
+        'modelo',
+        'placa'
     ];
 
     public function getFullNameAttribute()

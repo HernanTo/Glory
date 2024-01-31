@@ -60,6 +60,10 @@
                     <span>{{$item->phone_number}}</span>
                     <label>Dirección</label>
                     <span>{{$item->address}}</span>
+                    <label>Modelo</label>
+                    <span>{{$item->modelo}}</span>
+                    <label>Placa</label>
+                    <span>{{$item->placa}}</span>
                 </div>
             </div>
         </div>
