@@ -219,9 +219,18 @@
             <table class="table_info_usr">
                 <thead>
                     <tr class="th__main_usr">
+                        @php
+                            $stateGeneral = $bill->customer->modelo != NULL || $bill->customer->modelo != '' || $bill->customer->placa != NULL || $bill->customer->placa != '';
+
+                            $stateModelo = $bill->customer->modelo != NULL || $bill->customer->modelo != '';
+                            $statePlaca = $bill->customer->placa != NULL || $bill->customer->placa != '';
+                        @endphp
                         <th height="40" style="text-align: left; width: 50%;">DATOS CLIENTE</th>
-                        {{-- <th class="colm_sc" height="40">INFORMACIÓN VEHÍCULO</th> --}}
-                        <th class="colm_sc" height="40"></th>
+                        @if ($stateGeneral)
+                            <th class="colm_sc" height="40">INFORMACIÓN VEHÍCULO</th>
+                        @else
+                            <th class="colm_sc" height="40"></th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -230,13 +239,20 @@
                             <b>Nombre: </b>
                             {{$bill->customer->fullName}}
                         </td>
-                        <td class="colm_sc"> </td>
-                        {{-- <td class="colm_sc"><b>Modelo:</b> </td> --}}
+                        @if ($stateModelo)
+                            <td class="colm_sc"><b>Modelo:</b> {{$bill->customer->modelo}}</td>
+                        @else
+                            <td class="colm_sc"> </td>
+                        @endif
 
                     </tr>
                     <tr>
                         <td><b>Dirección: </b> {{$bill->customer->address}}</td>
-                        {{-- <td class="colm_sc"><b>Placa:</b> </td> --}}
+                        @if ($statePlaca)
+                            <td class="colm_sc"><b>Placa:</b> {{$bill->customer->placa}}</td>
+                        @else
+                            <td class="colm_sc"> </td>
+                        @endif
                     </tr>
                     <tr>
                         <td colspan="2"><b>NIT/CC:</b> {{$bill->customer->cc}}</td>
