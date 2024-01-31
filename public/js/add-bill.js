@@ -38,8 +38,8 @@ document.getElementById('is_paid').addEventListener('change', event=>{
     }else{
         $('#estado__pago').empty();
         document.getElementById('estado__pago').appendChild(document.createTextNode('Pagada'));
-
     }
+    document.getElementById('con__type__pay').classList.toggle('hide_in_form');
 })
 // Module state pago
 

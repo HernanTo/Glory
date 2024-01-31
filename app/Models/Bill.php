@@ -16,7 +16,8 @@ class Bill extends Model
         'is_paid',
         'subtotal',
         'total',
-        'is_active'
+        'is_active',
+        'id_type_pay'
     ];
 
     public function products(){
@@ -32,6 +33,10 @@ class Bill extends Model
 
     public function seller(){
         return $this->hasOne('App\Models\User', 'id', 'id_seller');
+    }
+
+    public function typePay(){
+        return $this->belongsTo(TypePay::class, 'id_type_pay', 'id');
     }
 
     public function getStateAttribute(){

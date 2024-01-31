@@ -48,12 +48,20 @@
                     <h3>{{$bill->haveIVA}}</h3>
                     <i class="fi fi-sr-badge-percent"></i>
                 </span>
+                @if ($bill->is_paid == 1)
+                    <span>
+                        <label>Tipo de pago</label>
+                        <h3> {{$bill->typePay->name}} </h3>
+                        <i class="fi fi-sr-wallet"></i>
+                    </span>
+                @else
+                    <span>
+                        <label>Subtotal</label>
+                        <h3 class="prices"> {{$bill->subtotal}} </h3>
+                        <i class="fi fi-br-plus-minus"></i>
+                    </span>
+                @endif
 
-                <span>
-                    <label>Subtotal</label>
-                    <h3 class="prices"> {{$bill->subtotal}} </h3>
-                    <i class="fi fi-br-plus-minus"></i>
-                </span>
 
                 <span>
                     <label>Total</label>

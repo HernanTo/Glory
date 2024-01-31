@@ -57,11 +57,14 @@ class BillController extends Controller
 
         $customers = Customer::where('is_active', 1)->get();
 
+        $typePays = DB::table('type_pays')->where('is_active', 1)->get();
+
         return view('facturas.create', [
             'products' => $products,
             'sellersPer' => $sellersWhitPer,
             'sellersRole' => $usersWithRole,
             'customers' => $customers,
+            'typePays' => $typePays,
         ]);
     }
 
@@ -125,6 +128,15 @@ class BillController extends Controller
             }
         }
         $is_paid = $request->is_paid == 'on' ? true : false;
+        $typePay = 1;
+
+        if($is_paid){
+            if($request->type_pay == 04001){
+                $typePay = 2;
+            }else{
+                $typePay = $request->type_pay;
+            }
+        }
 
         $total = $subtotal;
         if($iva){
@@ -139,6 +151,7 @@ class BillController extends Controller
             'subtotal' => $subtotal,
             'total' => $total,
             'is_active' => 1,
+            'id_type_pay' => $typePay
         ]);
 
         if($request->desc != null){
@@ -245,8 +258,9 @@ class BillController extends Controller
         if(!$bill){
             abort(404);
         }
+        $typePays = DB::table('type_pays')->where('is_active', 1)->get();
 
-        return view('facturas.edit', ['bill' => $bill]);
+        return view('facturas.edit', ['bill' => $bill, 'typePays' => $typePays]);
     }
 
     /**
@@ -264,9 +278,17 @@ class BillController extends Controller
             abort(404);
         }
 
+        $is_paid = $request->is_paid == 'on' ? true : false;
+        $typePay = 1;
+
+        if($is_paid){
+            $typePay = $request->type_pay;
+        }
+
         $bill->update([
             'is_paid' => $request->is_paid == null ? false : true,
-            'IVA' => $request->iva__check == null ? false : true,
+            'id_type_pay' => $typePay,
+            'IVA' => $request->iva__check == null ? false : true
         ]);
 
         return redirect()->route('bills');

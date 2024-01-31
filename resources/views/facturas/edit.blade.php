@@ -45,6 +45,22 @@
                         </label>
                     </div>
                 </article>
+                <article id="con__type__pay" class="{{!$bill->is_paid ? 'hide_in_form' : ''}}">
+                    <h4>Tipo de pago</h4>
+                    <select name="type_pay" id=""  class="form-select">
+                        @foreach ($typePays as $pay)
+                            @if ($bill->is_paid)
+                                @if ($bill->id_type_pay == $pay->id)
+                                    <option value="{{$pay->id}}" selected>{{$pay->name}}</option>
+                                @else
+                                    <option value="{{$pay->id}}">{{$pay->name}}</option>
+                                @endif
+                            @else
+                                <option value="{{$pay->id}}">{{$pay->name}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </article>
             </section>
             <section class="con__two__sub__form">
                 <button type="submit" class="btn__subm btn">Actualizar</button>
@@ -58,4 +74,9 @@
 @endsection
 @section('scripts')
 <script src="{{ asset('js/products.js') }}"></script>
+<script>
+    document.getElementById('is_paid').addEventListener('change', event=>{
+    document.getElementById('con__type__pay').classList.toggle('hide_in_form');
+})
+</script>
 @endsection
