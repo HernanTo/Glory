@@ -208,7 +208,7 @@
         </table>
         <table class="table_infoo">
             <tr class="info_bill">
-                <td><b>NÚMERO DE COTIZACIÓN: </b>  {{$bill->reference}} </td>
+                <td><b>NÚMERO DE FACTURA: </b>  {{$bill->reference}} </td>
                 <td style="text-align: right;"><b>FECHA DE FACTURA: </b> {{$bill->created_at->format('d-m-Y')}} </td>
             </tr>
         </table>
