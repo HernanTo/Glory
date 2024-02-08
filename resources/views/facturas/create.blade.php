@@ -130,7 +130,6 @@
                 <article id="con__type__pay">
                     <h4>Tipo de pago</h4>
                     <select name="type_pay" id=""  class="form-select">
-                        <option disabled selected value="04001">Seleccionar...</option>
                         @foreach ($typePays as $pay)
                         <option value="{{$pay->id}}">{{$pay->name}}</option>
                         @endforeach

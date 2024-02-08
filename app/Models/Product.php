@@ -70,5 +70,12 @@ class Product extends Model
             return $this->name;
         }
     }
+    public function getPriceDiscountAttribute(){
+        if($this->pivot->discount == 0){
+            return 0;
+        }else{
+            return ($this->pivot->price * ($this->pivot->discount / 100));
+        }
+    }
 
 }

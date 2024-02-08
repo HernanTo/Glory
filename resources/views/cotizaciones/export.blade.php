@@ -336,7 +336,7 @@
                     </tr>
                     @if ($discount > 0)
                         <tr>
-                            <td><b>DESCUENTO: </b> - {{formatCurrency($discount)}}</td>
+                            <td colspan="2"><b>DESCUENTO: </b> - {{formatCurrency($discount)}}</td>
                         </tr>
                         @endif
                         <tr>

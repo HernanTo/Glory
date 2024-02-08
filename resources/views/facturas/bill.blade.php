@@ -122,7 +122,7 @@
                             <h4 class="prices">{{$product->price}}</h4>
 
                             <p class="cantidad-prod-s">Cantidad: <i> {{$product->pivot->stock}} </i></p>
-                            <p class="mano-obra-su">Descuento: <i class="prices"> {{$product->pivot->discount}} </i></p>
+                            <p class="mano-obra-su">Descuento: <i class="prices"> {{$product->priceDiscount}} </i></p>
 
                             <h1 class="prices prices-pro"> {{$product->pivot->total_prices}} </h1>
                         </div>

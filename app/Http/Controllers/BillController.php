@@ -112,8 +112,7 @@ class BillController extends Controller
 
                 $priceXQuantity = $product->price * $product_amount;
                 $discount = $descuento == 'NA' ? 0 : $descuento;
-                $PricesWithDiscount = $priceXQuantity - ($discount * ($discount / 100));
-
+                $PricesWithDiscount = $priceXQuantity - ($priceXQuantity * ($discount / 100));
                 $subtotal += $PricesWithDiscount;
 
                 if($check_mano_obra == 'true'){
@@ -177,7 +176,7 @@ class BillController extends Controller
 
                 $priceXQuantity = $product->price * $product_amount;
                 $discount = $descuento == 'NA' ? 0 : $descuento;
-                $PricesWithDiscount = $priceXQuantity - ($discount * ($discount / 100));
+                $PricesWithDiscount = $priceXQuantity - ($priceXQuantity * ($discount / 100));
 
 
                 DB::table('bills_has_products')->insert([
